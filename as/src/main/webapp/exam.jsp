@@ -8,7 +8,7 @@
 </head>
 <body>
 
-
+연습하였습니다...
 
 <script type="text/javascript">
 $(document).ready(function() {
