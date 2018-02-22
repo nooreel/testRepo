@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="OfficeMapper">
+
+<update id="DeleteOffice" parameterType="String">
+update tb_office set active=1 where office_seq=#{office_seq}
+</update>
+<insert id="InsertOffice" parameterType="Hashmap">
+insert into tb_office(area_seq,officename,createdby,modifiedby) values(#{area_seq},#{officename},'관리자','관리자')
+</insert>
+
+<select id="GetOfficeRecord" parameterType="String" resultType="SystemConfig.Model.AreaOfficeBean">
+select a.areaname,o.area_seq,o.officename,o.office_seq 
+from tb_office o join tb_area a on a.area_seq=o.area_seq
+where o.office_seq=#{office_seq}
+</select>
+
+<select id="UpdateOffice" parameterType="SystemConfig.Model.AreaOfficeBean">
+update tb_office set officename=#{officename}, area_seq=#{area_seq} where office_seq=#{office_seq}
+</select>
+
+
+</mapper>

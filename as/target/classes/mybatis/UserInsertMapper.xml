@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="UserInsertMapper">
+
+<select id="SelectAreaList" resultType="AreaBean">
+select * from tb_area where active=0 order by area_seq asc
+</select>
+<select id="SelectOfficeList" resultType="OfficeBean" parameterType="String">
+select * from tb_office where area_seq=#{area_seq} and active=0
+</select>
+<select id="SelectDepartmentList" resultType="DepartmentBean" parameterType="String">
+select * from tb_department where office_seq=#{office_seq} and active=0
+</select>
+<select  id="SelectPrivilegeList" resultType="PrivilegeBean">
+select * from tb_privilege
+</select>
+<select id="NumberCheckFromLogin" resultType="int" parameterType="String">
+select count(*) from tb_employee where employeenumber=#{employeenumber}
+</select>
+<insert id="InsertUser" parameterType="EmployeeBean">
+insert into tb_employee
+(area_seq,office_seq,department_seq,employeenumber,password,birth,employeename,employeeposition,createdby,modifiedby,privilege,email)
+ values(#{area_seq},#{office_seq},#{department_seq},#{employeenumber},#{password},#{birth},#{employeename},#{employeeposition},'관리자','관리자',#{privilege},#{email});
+</insert>
+
+</mapper>

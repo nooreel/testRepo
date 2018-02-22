@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+
+<typeAliases>
+	<typeAlias alias="AreaBean" type="User.Model.AreaBean"/>
+	<typeAlias alias="OfficeBean" type="User.Model.OfficeBean"></typeAlias>
+	<typeAlias alias="DepartmentBean" type="User.Model.DepartmentBean"></typeAlias>
+	<typeAlias alias="PrivilegeBean" type="User.Model.PrivilegeBean"></typeAlias>
+	<typeAlias alias="EmployeeBean" type="User.Model.EmployeeBean"></typeAlias>
+</typeAliases>
+
+
+
+<mappers>
+
+<mapper resource="mybatis/UserInsertMapper.xml"/>
+<mapper resource="mybatis/SystemConfigMapper.xml"></mapper>
+<mapper resource="mybatis/AreaMapper.xml"></mapper>
+<mapper resource="mybatis/OfficeMapper.xml"></mapper>
+<mapper resource="mybatis/DepartmentMapper.xml"></mapper>
+</mappers>
+
+</configuration>

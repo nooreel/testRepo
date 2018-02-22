@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="SystemConfigMapper">
+<select  id="SelectAreaList" resultType="AreaBean">
+select * from tb_area where active=0 order by area_seq asc
+</select>
+
+<select id="SelectOfficeList" resultType="SystemConfig.Model.AreaOfficeBean">
+select a.areaname,o.officename,o.office_seq from tb_office o join tb_area a on o.area_seq=a.area_seq 
+where o.active=0 
+order by o.area_seq asc,
+o.office_seq asc
+</select>
+
+<select id="SelectDepartmentList" resultType="SystemConfig.Model.AreaOfficeDepartmentBean">
+select a.area_seq,a.areaname,o.office_seq,o.officename,d.department_seq,d.departmentname 
+from tb_department d join tb_office o on o.office_seq=d.office_seq 
+join tb_area a on a.area_seq=o.area_seq
+where d.active=0
+order by a.area_seq asc, o.office_seq asc, d.department_seq asc
+</select>
+<select id="SelectEmployeeList" resultType="SystemConfig.Model.EmployeeBean">
+select a.areaname,o.officename,d.departmentname,employeenumber,birth,employeename,employeeposition 
+from tb_employee e join tb_department d 
+on e.department_seq=d.department_seq
+join tb_office o
+on e.office_seq=o.office_seq
+join tb_area a
+on a.area_seq=o.area_seq
+</select>
+
+
+</mapper>

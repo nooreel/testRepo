@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="DepartmentMapper">
+
+<update id="DeleteDepartment" parameterType="String">
+update tb_department set active=1 where department_seq=#{department_seq}
+</update>
+<insert id="InsertDepartment" parameterType="SystemConfig.Model.AreaOfficeDepartmentBean">
+insert into tb_department(office_seq,departmentname,createdby,modifiedby) 
+values(#{office_seq},#{departmentname},'관리자','관리자')
+</insert>
+<select id="GetDepartmentRecord" resultType="SystemConfig.Model.AreaOfficeDepartmentBean" parameterType="String">
+select o.area_seq,d.office_seq,d.department_seq,d.departmentname 
+from tb_department d join tb_office o 
+on d.office_seq=o.office_seq
+where department_seq=#{department_seq}
+</select>
+<select id="UpdateDepartment" parameterType="SystemConfig.Model.AreaOfficeDepartmentBean">
+update tb_department set office_seq=#{office_seq}, departmentname=#{departmentname} 
+where department_seq=#{department_seq}
+</select>
+
+
+</mapper>
+
