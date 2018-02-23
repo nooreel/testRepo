@@ -15,22 +15,24 @@ import SystemConfig.Model.AreaDao;
 import SystemConfig.Model.AreaOfficeBean;
 import SystemConfig.Model.OfficeDao;
 import SystemConfig.Model.SystemConfigDao;
+import SystemConfig.Service.OfficeService;
+import SystemConfig.Service.SystemConfigService;
 import User.Model.AreaBean;
 
 @Controller
 public class OfficeInsertContoller {
 	
 	@Autowired
-	SystemConfigDao systemconfigdao;
+	SystemConfigService systemconfigservice;
 	
 	@Autowired
-	OfficeDao officedao;
+	OfficeService officeservice;
 	
 	@RequestMapping(value="InsertOffice.sc",method=RequestMethod.GET)
 	public ModelAndView goOfficeInsertForm() {
 		System.out.println("컨트롤러들어옴");
 		ModelAndView mav=new ModelAndView();
-		List<AreaBean> arealist=systemconfigdao.getAreaList();
+		List<AreaBean> arealist=systemconfigservice.getAreaList();
 		mav.addObject("arealist",arealist);
 		mav.setViewName("OfficeInsertForm");
 		System.out.println("arealist.size()"+arealist.size());
@@ -43,11 +45,11 @@ public class OfficeInsertContoller {
 			@RequestParam(value="officename") String officename
 			) {
 
-		Map<String, String> map=new HashMap();
+		Map<String, String> map=new HashMap<String,String>();
 		map.put("area_seq", area_seq);
 		map.put("officename", officename);
 		
-		officedao.InsertOffice(map);
+		officeservice.InsertOffice(map);
 		
 		return "redirect:SystemConfig.sc";
 	}

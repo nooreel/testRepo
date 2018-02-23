@@ -11,6 +11,7 @@ import SystemConfig.Model.AreaOfficeBean;
 import SystemConfig.Model.AreaOfficeDepartmentBean;
 import SystemConfig.Model.EmployeeBean;
 import SystemConfig.Model.SystemConfigDao;
+import SystemConfig.Service.SystemConfigService;
 import User.Model.AreaBean;
 import User.Model.OfficeBean;
 
@@ -19,27 +20,29 @@ import User.Model.OfficeBean;
 public class SystemConfigController {
 	
 
+
+	
 	@Autowired
-	SystemConfigDao systemconfigdao;
+	SystemConfigService systemconfigservice;
+	
 	
 	@RequestMapping("SystemConfig.sc")
 	public ModelAndView goSystemConfig() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("SystemConfig");
 		
-		List<AreaBean> arealist=systemconfigdao.getAreaList();
+		List<AreaBean> arealist=systemconfigservice.getAreaList();
 		mav.addObject("arealist",arealist);
 		
-		List<AreaOfficeBean> officelist=systemconfigdao.getOfficeList();
+		List<AreaOfficeBean> officelist=systemconfigservice.getOfficeList();
 		mav.addObject("officelist",officelist);
 		System.out.println(officelist.size()+"오피스리스트 사이즈");
 		
-		List<AreaOfficeDepartmentBean> departmentlist=systemconfigdao.getDepartmentList();
+		List<AreaOfficeDepartmentBean> departmentlist=systemconfigservice.getDepartmentList();
 		mav.addObject("departmentlist",departmentlist);
 		
-		List<EmployeeBean> employeelist=systemconfigdao.getEmployeeList();
+		List<EmployeeBean> employeelist=systemconfigservice.getEmployeeList();
 		mav.addObject("employeelist",employeelist);
-		System.out.println("employee리스트 사이즈:"+employeelist.size());
 		
 		return mav;
 	}

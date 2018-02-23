@@ -10,6 +10,8 @@
 		<config>src/main/webapp/WEB-INF/spring/appServlet/mainpage-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/sc-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/user-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/equipment-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/sw-context.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>

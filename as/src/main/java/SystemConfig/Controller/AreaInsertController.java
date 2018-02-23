@@ -12,17 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import SystemConfig.Model.AreaDao;
+import SystemConfig.Service.AreaService;
 
 @Controller
 public class AreaInsertController {
 
 	@Autowired
-	AreaDao areadao;
+	AreaService areaservice;
 	
 	@RequestMapping(value="InsertArea.sc",method=RequestMethod.GET)
 	public void InsertArea(HttpServletRequest request,HttpServletResponse response) {
 		String areaname=request.getParameter("areaname");
-		int result=areadao.insertArea(areaname);
+		int result=areaservice.insertArea(areaname);
 		response.setContentType("text/html; charset=UTF-8");
 		try {
 			PrintWriter out=response.getWriter();

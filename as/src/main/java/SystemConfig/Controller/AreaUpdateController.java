@@ -7,22 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import SystemConfig.Model.AreaDao;
+
+import SystemConfig.Service.AreaService;
 
 @Controller
 public class AreaUpdateController {
 
 	@Autowired
-	AreaDao areadao;
+	AreaService areaservice;
 	
 	@RequestMapping("UpdateArea.sc")
 	public void UpdateArea(HttpServletRequest request,HttpServletResponse response) {
-		String areaname=request.getParameter("areaname");
 		String area_seq=request.getParameter("area_seq");
-		
-		areadao.updateArea(area_seq,areaname);
-		System.out.println("수정완료");
-		
+		String areaname=request.getParameter("areaname");
+		areaservice.UpdateaArea(area_seq, areaname);
 	}
 	
 }

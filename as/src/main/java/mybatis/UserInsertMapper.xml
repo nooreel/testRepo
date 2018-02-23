@@ -13,9 +13,6 @@ select * from tb_office where area_seq=#{area_seq} and active=0
 <select id="SelectDepartmentList" resultType="DepartmentBean" parameterType="String">
 select * from tb_department where office_seq=#{office_seq} and active=0
 </select>
-<select  id="SelectPrivilegeList" resultType="PrivilegeBean">
-select * from tb_privilege
-</select>
 <select id="NumberCheckFromLogin" resultType="int" parameterType="String">
 select count(*) from tb_employee where employeenumber=#{employeenumber}
 </select>

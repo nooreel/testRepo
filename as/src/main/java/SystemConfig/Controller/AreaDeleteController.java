@@ -10,16 +10,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import SystemConfig.Model.AreaDao;
 
+import SystemConfig.Service.AreaService;
+
 @Controller
 public class AreaDeleteController {
 
 	@Autowired
-	AreaDao areadao;
+	AreaService areaservice;
 	
 	@RequestMapping("DeleteArea.sc")
 	public ModelAndView AreaDelete(HttpServletRequest request) {
 		String area_seq=request.getParameter("area_seq");
-		areadao.deleteArea(area_seq);
+		areaservice.deleteArea(area_seq);
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("redirect:SystemConfig.sc");
 		return mav;

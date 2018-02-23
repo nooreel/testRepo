@@ -58,11 +58,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="goMain.mainpage">삼성화재 현장 PC 운영</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+            	<li>
+                    <a href="SwRegist.sw">
+                        <i class="fa fa-envelope fa-fw"></i>소프트웨어 등록
+                    </a>
+                </li>
+            	<li>
+                    <a href="EquipmentRegist.eq">
+                        <i class="fa fa-envelope fa-fw"></i>장비등록
+                    </a>
+                </li>
                 <li>
                     <a href="SystemConfig.sc">
                         <i class="fa fa-envelope fa-fw"></i> 시스템 관리

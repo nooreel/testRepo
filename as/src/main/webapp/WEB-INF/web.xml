@@ -72,6 +72,34 @@
      <url-pattern>*.us</url-pattern>
 </servlet-mapping>
 
+<servlet>
+     <servlet-name>eq</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/equipment-context.xml</param-value>
+     </init-param>
+</servlet>
+
+<servlet-mapping>
+     <servlet-name>eq</servlet-name>
+     <url-pattern>*.eq</url-pattern>
+</servlet-mapping>
+
+<servlet>
+     <servlet-name>sw</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/sw-context.xml</param-value>
+     </init-param>
+</servlet>
+
+<servlet-mapping>
+     <servlet-name>sw</servlet-name>
+     <url-pattern>*.sw</url-pattern>
+</servlet-mapping>
+
 
 
 

@@ -29,6 +29,7 @@ join tb_office o
 on e.office_seq=o.office_seq
 join tb_area a
 on a.area_seq=o.area_seq
+where e.active=0
 </select>
 
 

@@ -213,7 +213,7 @@ function UpdateArea(area_seq){
 										<td>${employeelist.employeename}</td>
 										<td>${employeelist.employeeposition}</td>
 										<td>
-											<a href="#">Delete</a>
+											<a href="EmployeeDelete.sc?employeenumber=${employeelist.employeenumber}">Delete</a>
 										</td>
 									</tr>
 								</c:forEach>

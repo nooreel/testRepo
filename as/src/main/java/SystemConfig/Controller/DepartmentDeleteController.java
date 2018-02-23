@@ -5,18 +5,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import SystemConfig.Model.DepartmentDao;
+import SystemConfig.Service.DepartmentService;
 
 @Controller
 public class DepartmentDeleteController {
 
 	@Autowired
-	DepartmentDao departmentdao;
+	DepartmentService departmentservice;
 	
 	@RequestMapping("deleteDepartment.sc")
 	public String DeleteDepartmentProc(@RequestParam("department_seq") String department_seq) {
 		
-		departmentdao.deleteDepartment(department_seq);
+		departmentservice.deleteDepartment(department_seq);
 		
 		return "redirect:SystemConfig.sc";
 	}

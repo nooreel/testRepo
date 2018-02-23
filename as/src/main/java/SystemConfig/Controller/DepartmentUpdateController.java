@@ -14,25 +14,27 @@ import org.springframework.web.servlet.ModelAndView;
 import SystemConfig.Model.AreaOfficeDepartmentBean;
 import SystemConfig.Model.DepartmentDao;
 import SystemConfig.Model.SystemConfigDao;
+import SystemConfig.Service.DepartmentService;
+import SystemConfig.Service.SystemConfigService;
 import User.Model.AreaBean;
 
 @Controller
 public class DepartmentUpdateController {
 
 	@Autowired
-	DepartmentDao departmentdao;
+	DepartmentService departmentservice;
 	
 	@Autowired
-	SystemConfigDao systemconfigdao;
+	SystemConfigService systemconfigservice;
 	
 	@RequestMapping(value="UpdateDepartment.sc",method=RequestMethod.GET)
 	public ModelAndView goDepartmentUpdateForm(@RequestParam("department_seq") String department_seq) {
 		ModelAndView mav=new ModelAndView();
-		AreaOfficeDepartmentBean bean=departmentdao.getDepartmentRecord(department_seq);
+		AreaOfficeDepartmentBean bean=departmentservice.getDepartmentRecord(department_seq);
 		mav.addObject("bean",bean);
 		System.out.println(bean.getArea_seq());
 		
-		List<AreaBean> arealist=systemconfigdao.getAreaList();
+		List<AreaBean> arealist=systemconfigservice.getAreaList();
 		mav.addObject("arealist",arealist);
 		mav.setViewName("DepartmentUpdateForm");
 		
@@ -47,7 +49,7 @@ public class DepartmentUpdateController {
 		bean.setDepartment_seq(Integer.parseInt(request.getParameter("department_seq")));
 		bean.setDepartmentname(request.getParameter("departmentname"));
 		
-		departmentdao.UpdateDepartment(bean);
+		departmentservice.UpdateDepartment(bean);
 		
 		return "redirect:SystemConfig.sc";
 	}

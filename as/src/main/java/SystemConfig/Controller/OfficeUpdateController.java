@@ -12,26 +12,28 @@ import org.springframework.web.servlet.ModelAndView;
 import SystemConfig.Model.AreaOfficeBean;
 import SystemConfig.Model.OfficeDao;
 import SystemConfig.Model.SystemConfigDao;
+import SystemConfig.Service.OfficeService;
+import SystemConfig.Service.SystemConfigService;
 import User.Model.AreaBean;
 
 @Controller
 public class OfficeUpdateController {
 	
 	@Autowired
-	OfficeDao officedao;
+	OfficeService officeservice;
 	
 	@Autowired
-	SystemConfigDao systemconfigdao;
+	SystemConfigService systemconfigservice;
 	
 	@RequestMapping(value="EditOffice.sc",method=RequestMethod.GET)
 	public ModelAndView goOfficeUpdateForm(@RequestParam("office_seq") String office_seq) {
 		ModelAndView mav=new ModelAndView();
 		
-		AreaOfficeBean bean=officedao.getOfficeRecord(office_seq);
+		AreaOfficeBean bean=officeservice.getOfficeRecord(office_seq);
 		mav.addObject("bean",bean);
 		mav.setViewName("OfficeUpdateForm");
 		
-		List<AreaBean> arealist=systemconfigdao.getAreaList();
+		List<AreaBean> arealist=systemconfigservice.getAreaList();
 		mav.addObject("arealist",arealist);
 		
 		return mav;
@@ -47,7 +49,7 @@ public class OfficeUpdateController {
 		bean.setOffice_seq(Integer.parseInt(office_seq));
 		bean.setOfficename(officename);
 
-		officedao.updateOffice(bean);
+		officeservice.updateOffice(bean);
 		
 		return "redirect:SystemConfig.sc";
 	}

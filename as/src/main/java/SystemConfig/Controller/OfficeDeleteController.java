@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import SystemConfig.Model.OfficeDao;
+import SystemConfig.Service.OfficeService;
 
 @Controller
 public class OfficeDeleteController {
 	
 	@Autowired
-	OfficeDao officedao;
+	OfficeService officeservice;
 	
 	@RequestMapping(value="DeleteOffice.sc",method=RequestMethod.GET)
 	public ModelAndView goOfficeUpdateForm(@RequestParam("office_seq") String office_seq,
@@ -26,7 +27,7 @@ public class OfficeDeleteController {
 		System.out.println("µô¸®Æ® ÄÁÆ®·Ñ·¯ µé¾î¿È");
 		ModelAndView mav=new ModelAndView();
 
-		officedao.DeleteOffice(office_seq);
+		officeservice.DeleteOffice(office_seq);
 		mav.setViewName("redirect:SystemConfig.sc");
 		
 		return mav;

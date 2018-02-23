@@ -37,7 +37,6 @@ public class AreaDao {
 		map.put("areaname", areaname);
 		int result=sqlsessiontemplate.update(namespace+".UpdateArea",map);
 		System.out.println("수정결과:"+result);
-		
 	}
 	
 }

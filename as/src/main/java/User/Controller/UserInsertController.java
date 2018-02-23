@@ -17,14 +17,14 @@ import User.Model.AreaBean;
 import User.Model.DepartmentBean;
 import User.Model.EmployeeBean;
 import User.Model.OfficeBean;
-import User.Model.PrivilegeBean;
-import User.Model.UserDao;
+
+import User.Service.UserService;
 
 @Controller
 public class UserInsertController {
 	
 	@Autowired
-	UserDao userDao;
+	UserService userservice;
 	
 	
 	@RequestMapping(value="UserInsertForm.us",method=RequestMethod.GET)
@@ -32,7 +32,7 @@ public class UserInsertController {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("UserInsertForm");
 		
-		List<AreaBean> areaList=userDao.getAreaList();
+		List<AreaBean> areaList=userservice.getAreaList();
 		mav.addObject("areaList", areaList);
 
 		return mav;
@@ -42,7 +42,7 @@ public class UserInsertController {
 	public void getOfficeList(HttpServletRequest request,HttpServletResponse response) {
 		response.setContentType("text/html;charset=UTF-8");
 		String area_seq=request.getParameter("area_seq");
-		List<OfficeBean> officeList=userDao.getOfficeList(area_seq);
+		List<OfficeBean> officeList=userservice.getOfficeList(area_seq);
 		
 		try {
 			PrintWriter out=response.getWriter();
@@ -64,7 +64,7 @@ public class UserInsertController {
 	public void getDepartmentList(HttpServletRequest request,HttpServletResponse response) {
 		response.setContentType("text/html;charset=UTF-8");
 		String office_seq=request.getParameter("office_seq");
-		List<DepartmentBean> departmentList=userDao.getDepartmentList(office_seq);
+		List<DepartmentBean> departmentList=userservice.getDepartmentList(office_seq);
 		
 		try {
 			PrintWriter out=response.getWriter();
@@ -86,7 +86,7 @@ public class UserInsertController {
 	public void employeeNumberCheck(HttpServletRequest request,HttpServletResponse response) {
 		response.setContentType("text/html;charset=UTF-8");
 		String employeenumber=request.getParameter("employeenumber");
-		String result=userDao.employeeNumberCheck(employeenumber);
+		String result=userservice.employeeNumberCheck(employeenumber);
 		System.out.println("result: "+result);
 		try {
 			PrintWriter out=response.getWriter();
@@ -111,7 +111,7 @@ public class UserInsertController {
 		System.out.println(eb.getPrivilege());
 		System.out.println(eb.getEmail());
 		
-		int count=userDao.insertUser(eb);
+		int count=userservice.insertUser(eb);
 		
 		response.setContentType("text/html;charset=UTF-8");
 		try {

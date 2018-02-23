@@ -16,22 +16,24 @@ import SystemConfig.Model.AreaOfficeBean;
 import SystemConfig.Model.AreaOfficeDepartmentBean;
 import SystemConfig.Model.DepartmentDao;
 import SystemConfig.Model.SystemConfigDao;
+import SystemConfig.Service.DepartmentService;
+import SystemConfig.Service.SystemConfigService;
 import User.Model.AreaBean;
 
 @Controller
 public class DepartmentInsertController {
 	
 	@Autowired
-	SystemConfigDao systemconfigdao;
+	SystemConfigService systemconfigservice;
 	
 	@Autowired
-	DepartmentDao departmentdao;
+	DepartmentService departmentservice;
 
 	@RequestMapping(value="InsertDepartment.sc",method=RequestMethod.GET)
 	public ModelAndView goInsertDepartmentForm() {
 		ModelAndView mav=new ModelAndView();
 		
-		List<AreaBean> arealist=systemconfigdao.getAreaList();
+		List<AreaBean> arealist=systemconfigservice.getAreaList();
 		mav.addObject("arealist",arealist);
 		
 		mav.setViewName("DepartmentInsertForm");
@@ -43,12 +45,12 @@ public class DepartmentInsertController {
 		
 		String office_seq=request.getParameter("office_seq");
 		String departmentname=request.getParameter("departmentname");
-		Map<String, String> map=new HashMap<String,String>();
+		
 		AreaOfficeDepartmentBean bean=new AreaOfficeDepartmentBean();
 		bean.setOffice_seq(Integer.parseInt(office_seq));
 		bean.setDepartmentname(departmentname);
 		
-		departmentdao.InsertDepartment(bean);
+		departmentservice.InsertDepartment(bean);
 		
 		return "redirect:SystemConfig.sc";
 	}
