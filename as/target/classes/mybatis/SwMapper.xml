@@ -7,7 +7,7 @@
 <insert id="SwInsert" parameterType="sw.Model.SwBean">
 	insert into tb_sw
 	(swname,swversion,createdby,modifiedby,swtype,bit,maker,used,quantity) 
-	from value(#{swname},#{swversion},#{swtype},#{bit},#{maker},#{used},#{quantity})
+	values(#{swname},#{swversion},'관리자','관리자',#{swtype},#{bit},#{maker},#{used},#{quantity})
 </insert>
 
 

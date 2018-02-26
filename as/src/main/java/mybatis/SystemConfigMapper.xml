@@ -31,6 +31,8 @@ join tb_area a
 on a.area_seq=o.area_seq
 where e.active=0
 </select>
-
+<select id="SelectSwList" resultType="sw.Model.SwBean">
+select * from tb_sw
+</select>
 
 </mapper>

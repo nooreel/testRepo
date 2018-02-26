@@ -13,6 +13,8 @@ public class SwDao {
 	SqlSessionTemplate sqlsessiontemplate;
 	
 	public void swInsert(SwBean bean) {
+		System.out.println(bean.getUsed());
+		System.out.println(bean.getQuantity());
 		sqlsessiontemplate.insert(namespace+".SwInsert",bean);
 	}
 	

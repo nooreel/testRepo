@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import User.Model.AreaBean;
 import User.Model.OfficeBean;
+import sw.Model.SwBean;
 
 @Component
 public class SystemConfigDao {
@@ -35,6 +36,11 @@ public List<AreaOfficeDepartmentBean> getDepartmentList(){
 public List<EmployeeBean> getEmployeeList(){
 	List<EmployeeBean> employeelist=sqlsessiontemplate.selectList(namespace+".SelectEmployeeList");
 	return employeelist;
+}
+
+public List<SwBean> getSwList(){
+	List<SwBean> swlist=sqlsessiontemplate.selectList(namespace+".SelectSwList");
+	return swlist;
 }
 
 }

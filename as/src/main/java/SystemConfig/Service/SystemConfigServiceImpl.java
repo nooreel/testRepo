@@ -10,6 +10,7 @@ import SystemConfig.Model.AreaOfficeDepartmentBean;
 import SystemConfig.Model.EmployeeBean;
 import SystemConfig.Model.SystemConfigDao;
 import User.Model.AreaBean;
+import sw.Model.SwBean;
 
 @Service
 public class SystemConfigServiceImpl implements SystemConfigService{
@@ -37,4 +38,14 @@ public class SystemConfigServiceImpl implements SystemConfigService{
 		return systemconfigdao.getEmployeeList();
 	}
 
+	@Override
+	public List<SwBean> getSwList() {
+		return systemconfigdao.getSwList();
+	}
+
+	
+	
+	
+	
+	
 }

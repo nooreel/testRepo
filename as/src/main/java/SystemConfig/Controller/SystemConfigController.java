@@ -14,6 +14,8 @@ import SystemConfig.Model.SystemConfigDao;
 import SystemConfig.Service.SystemConfigService;
 import User.Model.AreaBean;
 import User.Model.OfficeBean;
+import sw.Model.SwBean;
+import sw.Model.SwDao;
 
 
 @Controller
@@ -43,6 +45,11 @@ public class SystemConfigController {
 		
 		List<EmployeeBean> employeelist=systemconfigservice.getEmployeeList();
 		mav.addObject("employeelist",employeelist);
+		
+		List<SwBean> swlist=systemconfigservice.getSwList();
+		mav.addObject("swlist",swlist);
+		System.out.println(swlist.size());
+		
 		
 		return mav;
 	}

@@ -42,8 +42,8 @@
 								<tr>
 									<td>BIT</td>
 									<td>
-										<input type="radio" name="bit"> x86 
-										<input type="radio" name="bit"> x64
+										<input type="radio" name="bit" value="x86"> x86 						
+										<input type="radio" name="bit" value="x64"> x64
 									</td>
 								</tr>
 								<tr>

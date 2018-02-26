@@ -24,6 +24,8 @@ PUBLIC "-//mybatis.org//DTD config 3.0//EN"
 <mapper resource="mybatis/DepartmentMapper.xml"></mapper>
 <mapper resource="mybatis/EmployeeMapper.xml"></mapper>
 <mapper resource="mybatis/SwMapper.xml"></mapper>
+<mapper resource="mybatis/LoginMapper.xml"/>
+
 </mappers>
 
 </configuration>

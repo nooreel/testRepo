@@ -80,9 +80,18 @@
                 </li>
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a href="#">
-                        <i class="fa fa-tasks fa-fw"></i>로그인 
-                    </a>
+                    <c:choose>
+                		<c:when test="${loginuser eq null}">
+                		<a href="login.login">
+                			<i class="fa fa-tasks fa-fw"></i>로그인
+                		 </a>
+                		</c:when>
+                		<c:otherwise>
+                		<a href="logOut.login">
+                			<i class="fa fa-tasks fa-fw"></i>로그아웃
+                			 </a>
+                		</c:otherwise>
+                	</c:choose>
                 </li>
                
                 <li>

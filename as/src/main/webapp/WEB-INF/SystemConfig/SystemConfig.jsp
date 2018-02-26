@@ -223,6 +223,17 @@ function UpdateArea(area_seq){
 				</div> <!-- panel 끝 -->
 			</div>
 		</div><!-- row 끝 -->
+		<div class="row">
+			<div class="col-lg-12">
+				<table class="table">
+				<c:forEach var="swlist" items="${swlist}">
+					<tr>
+						<td>포문돌았음</td>
+					</tr>
+				</c:forEach>
+				</table>
+			</div>
+		</div> <!-- row 끝 -->
 	
 	<!-- #page-wrapper 끝 -->
 	</div>
