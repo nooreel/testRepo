@@ -34,5 +34,8 @@ where e.active=0
 <select id="SelectSwList" resultType="sw.Model.SwBean">
 select * from tb_sw
 </select>
+<select id="GetTotalCountSw" resultType="int">
+select count(*) from tb_sw
+</select>
 
 </mapper>

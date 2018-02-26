@@ -43,6 +43,11 @@ public class SystemConfigServiceImpl implements SystemConfigService{
 		return systemconfigdao.getSwList();
 	}
 
+	@Override
+	public int getSwListSize() {
+		return systemconfigdao.getSwListSize();
+	}
+
 	
 	
 	

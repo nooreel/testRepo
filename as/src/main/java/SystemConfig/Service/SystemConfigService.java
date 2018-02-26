@@ -15,5 +15,6 @@ public interface SystemConfigService {
 	public abstract List<AreaOfficeDepartmentBean> getDepartmentList();
 	public abstract List<EmployeeBean> getEmployeeList();
 	public abstract List<SwBean> getSwList();
+	public abstract int getSwListSize();
 	
 }

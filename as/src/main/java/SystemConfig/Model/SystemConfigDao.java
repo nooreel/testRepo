@@ -43,4 +43,9 @@ public List<SwBean> getSwList(){
 	return swlist;
 }
 
+public int getSwListSize() {
+	int totalCount=sqlsessiontemplate.selectOne(namespace+".GetTotalCountSw");
+	return totalCount;
+}
+
 }
