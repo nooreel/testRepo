@@ -79,8 +79,7 @@ CREATE TABLE TB_equipment
 	modified datetime DEFAULT NOW(),
 	modifiedby varchar(50),
 	active int DEFAULT 0,
-	PRIMARY KEY (equipmentid),
-	UNIQUE (employeenumber)
+	PRIMARY KEY (equipmentid)
 );
 
 

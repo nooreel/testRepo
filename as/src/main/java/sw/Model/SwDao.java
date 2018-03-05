@@ -18,5 +18,17 @@ public class SwDao {
 		sqlsessiontemplate.insert(namespace+".SwInsert",bean);
 	}
 	
+	public void swDelete(String swnumber) {
+		sqlsessiontemplate.delete(namespace+".SwDelete",swnumber);
+	}
+	
+	public SwBean getSwRecord(String swnumber) {
+		SwBean bean=sqlsessiontemplate.selectOne(namespace+".GetSwRecord",swnumber);
+		return bean;
+	}
+	
+	public void swUpdate(SwBean bean) {
+		sqlsessiontemplate.update(namespace+".SwUpdate",bean);
+	}
 	
 }

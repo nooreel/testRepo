@@ -66,7 +66,8 @@
 								</tr>
 								<tr>
 									<td colspan=2>
-										<input type="submit" value=submit">
+										
+										<input type="submit" value="수정하기" class="btn btn-primary">
 									</td>
 								</tr>
 							</table>

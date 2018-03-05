@@ -1,11 +1,14 @@
 package SystemConfig.Model;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import Paging.SwPaging;
 import User.Model.AreaBean;
 import User.Model.OfficeBean;
 import sw.Model.SwBean;
@@ -38,14 +41,6 @@ public List<EmployeeBean> getEmployeeList(){
 	return employeelist;
 }
 
-public List<SwBean> getSwList(){
-	List<SwBean> swlist=sqlsessiontemplate.selectList(namespace+".SelectSwList");
-	return swlist;
-}
 
-public int getSwListSize() {
-	int totalCount=sqlsessiontemplate.selectOne(namespace+".GetTotalCountSw");
-	return totalCount;
-}
 
 }

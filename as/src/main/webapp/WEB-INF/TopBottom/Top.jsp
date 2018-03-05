@@ -64,6 +64,11 @@
 
             <ul class="nav navbar-top-links navbar-right">
             	<li>
+            		<a href="EquipSwConfig.es">
+            			<i class="fa fa-envelope fa-fw"></i>장비,SW관리
+            		</a>
+            	</li>
+            	<li>
                     <a href="SwRegist.sw">
                         <i class="fa fa-envelope fa-fw"></i>소프트웨어 등록
                     </a>
@@ -75,7 +80,7 @@
                 </li>
                 <li>
                     <a href="SystemConfig.sc">
-                        <i class="fa fa-envelope fa-fw"></i> 시스템 관리
+                        <i class="fa fa-envelope fa-fw"></i> 인사관리
                     </a>
                 </li>
                 <!-- /.dropdown -->

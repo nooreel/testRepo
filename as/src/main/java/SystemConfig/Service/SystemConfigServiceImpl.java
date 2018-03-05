@@ -1,10 +1,12 @@
 package SystemConfig.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import Paging.SwPaging;
 import SystemConfig.Model.AreaOfficeBean;
 import SystemConfig.Model.AreaOfficeDepartmentBean;
 import SystemConfig.Model.EmployeeBean;
@@ -38,17 +40,7 @@ public class SystemConfigServiceImpl implements SystemConfigService{
 		return systemconfigdao.getEmployeeList();
 	}
 
-	@Override
-	public List<SwBean> getSwList() {
-		return systemconfigdao.getSwList();
-	}
 
-	@Override
-	public int getSwListSize() {
-		return systemconfigdao.getSwListSize();
-	}
-
-	
 	
 	
 	
