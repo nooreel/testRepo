@@ -10,8 +10,17 @@ public class SwBean {
 	private String used;
 	private int quantity;
 	private String swtype;
+	private String equipmentid;
 	
 	
+	
+	
+	public String getEquipmentid() {
+		return equipmentid;
+	}
+	public void setEquipmentid(String equipmentid) {
+		this.equipmentid = equipmentid;
+	}
 	public String getSwtype() {
 		return swtype;
 	}

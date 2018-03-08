@@ -6,7 +6,7 @@ public class SwPaging {
 	private int totalCount=0;
 	private int totalPage=0;
 	private int pageNumber=0;
-	private int pageSize=10;
+	private int pageSize=5;
 	private int beginRow=0;
 	private int endRow=0;
 	private int pageCount=3;

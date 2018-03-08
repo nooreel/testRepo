@@ -32,20 +32,20 @@ public class EquipSwServiceImpl implements EquipSwService{
 	}
 
 	@Override
-	public List<SwBean> getStandardSwList() {
-		List<SwBean> list=equipswdao.getStandardSwList();
+	public List<SwBean> getStandardSwList(String equipmentid) {
+		List<SwBean> list=equipswdao.getStandardSwList(equipmentid);
 		return list;
 	}
 
 	@Override
-	public List<SwBean> getExploreList() {
-		List<SwBean> list=equipswdao.getExploreList();
+	public List<SwBean> getExploreList(String equipmentid) {
+		List<SwBean> list=equipswdao.getExploreList(equipmentid);
 		return list;
 	}
 
 	@Override
-	public List<SwBean> getOsList() {
-		List<SwBean> list=equipswdao.getOsList();
+	public List<SwBean> getOsList(String equipmentid) {
+		List<SwBean> list=equipswdao.getOsList(equipmentid);
 		return list;
 	}
 
@@ -72,6 +72,12 @@ public class EquipSwServiceImpl implements EquipSwService{
 		String sumSwname=equipswdao.getRecordByEquipmentid(equipmentid);
 
 		return sumSwname;
+	}
+
+	@Override
+	public void allDeleteSw(String equipmentid) {
+		equipswdao.allDeleteSw(equipmentid);
+		
 	}
 
 

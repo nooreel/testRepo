@@ -26,22 +26,20 @@ public class EquipSwInsertController {
 	
 	@RequestMapping(value="EquipSwInsert.es",method=RequestMethod.GET)
 	public ModelAndView goEquipSwInsertForm(
-			@RequestParam(value="equipmentid",required=false) String equipmentid) {
+			@RequestParam(value="equipmentid",required=true) String equipmentid) {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("EquipSwInsertForm");
 		
-		List<SwBean> standardswlist=equipswservice.getStandardSwList();
-		List<SwBean> explorerlist=equipswservice.getExploreList();
-		List<SwBean> oslist=equipswservice.getOsList();
+		List<SwBean> standardswlist=equipswservice.getStandardSwList(equipmentid);
+		List<SwBean> explorerlist=equipswservice.getExploreList(equipmentid);
+		List<SwBean> oslist=equipswservice.getOsList(equipmentid);
 		
 		mav.addObject("standardswlist",standardswlist);
 		mav.addObject("explorerlist",explorerlist);
 		mav.addObject("oslist",oslist);
 		mav.addObject("equipmentid",equipmentid);
 		
-		String sumSwname=equipswservice.getRecordByEquipmentid(equipmentid);
-		mav.addObject("sumSwname",sumSwname);
-		System.out.println(sumSwname);
+
 		
 		
 		return mav;
@@ -50,12 +48,8 @@ public class EquipSwInsertController {
 	@RequestMapping(value="EquipSwInsert.es",method=RequestMethod.POST)
 	public ModelAndView EquipSwInserProc(EquipSwBean bean) {
 		
-		System.out.println(bean.getPatch_percent());
-		System.out.println(bean.getSw().length);
-		System.out.println(bean.getOs());
-		System.out.println(bean.getEquipmentid());
-		System.out.println(bean.getExplorer());
-		
+		System.out.println("eqid: "+bean.getEquipmentid());
+		equipswservice.allDeleteSw(bean.getEquipmentid());
 		
 		equipswservice.equipSwRegist(bean);
 		

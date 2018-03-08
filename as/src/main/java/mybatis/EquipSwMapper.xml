@@ -21,17 +21,31 @@ select count(*) from tb_sw
 
 </select>
 
-<select id="SelectStandardSw" resultType="sw.Model.SwBean">
-select * from tb_sw where swtype='표준SW'
+<select id="SelectStandardSw" resultType="sw.Model.SwBean" parameterType="String">
+select s.swnumber,s.swname,s.swversion,s.swtype,es.patch_percent,es.equipmentid=#{equipmentid} as 'equipmentid'
+from tb_sw s left join tb_equipsw es 
+on s.swnumber=es.swnumber
+where s.swtype='표준SW'
+group by s.swname
+order by s.swnumber asc
 </select>
 
-<select id="SelectExplorer" resultType="sw.Model.SwBean">
-select * from tb_sw where swtype='Explorer'
+<select id="SelectExplorer" resultType="sw.Model.SwBean" parameterType="String">
+select s.swnumber,s.swname,s.swversion,s.swtype,es.patch_percent,es.equipmentid=#{equipmentid} as 'equipmentid'
+from tb_sw s left join tb_equipsw es 
+on s.swnumber=es.swnumber
+where s.swtype='Explorer'
+group by s.swversion
+order by s.swnumber asc
 </select>
 
-<select id="SelectOS" resultType="sw.Model.SwBean">
-select * from tb_sw where swtype='OS'
-</select>
+<select id="SelectOS" resultType="sw.Model.SwBean" parameterType="String">
+select s.swnumber,s.swname,s.swversion,s.swtype,es.patch_percent,es.equipmentid=#{equipmentid} as 'equipmentid'
+from tb_sw s left join tb_equipsw es 
+on s.swnumber=es.swnumber
+where s.swtype='OS'
+group by s.swname
+order by s.swnumber asc</select>
 
 <select id="GetTotalCountEq" parameterType="Hashmap" resultType="int">
 select count(*) from tb_equipment
@@ -67,5 +81,9 @@ select e.equipmentid,e.swnumber,s.swname,s.swversion
 	from tb_equipsw e join tb_sw s on e.swnumber=s.swnumber
 		where e.equipmentid=#{equipmentid};
 </select>
+
+<delete id="DeleteSw" parameterType="String">
+delete from tb_equipsw where equipmentid=#{equipmentid}
+</delete>
 
 </mapper>

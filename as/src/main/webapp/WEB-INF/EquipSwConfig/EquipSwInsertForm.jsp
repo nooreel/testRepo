@@ -24,7 +24,7 @@
 							<c:set var="count" value="0"></c:set>
 							<c:forEach var="s" items="${standardswlist}" varStatus="staus">
 								${s.swname }&nbsp <input type="checkbox" name="sw" value="${s.swnumber}"
-								<c:if test="${fn:contains(sumSwname,s.swname)}">
+								<c:if test="${s.equipmentid=='1'}">
 								checked
 								</c:if>
 								> &nbsp
@@ -40,7 +40,7 @@
 							<td>
 							<c:forEach var="o" items="${oslist}">
 								${o.swname }&nbsp <input type="radio" name="os" value="${o.swnumber}"
-								<c:if test="${fn:contains(sumSwname,o.swname)}">
+								<c:if test="${o.equipmentid=='1'}">
 								checked
 								</c:if>
 								> &nbsp
@@ -63,7 +63,7 @@
 							<td colspan=3>
 							<c:forEach var="e" items="${explorerlist }">
 								${e.swversion } &nbsp<input type="radio" name="explorer" value="${e.swnumber}"
-								<c:if test="${fn:contains(sumSwname,e.swversion)}">
+								<c:if test="${e.equipmentid=='1'}">
 								checked
 								</c:if>
 								> &nbsp

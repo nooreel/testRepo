@@ -39,18 +39,19 @@ public class EquipSwDao {
 		return totalCount;
 	}
 	
-	public List<SwBean> getStandardSwList(){
-		List<SwBean> list=sqlsessiontemplate.selectList(namespace+".SelectStandardSw");
+	public List<SwBean> getStandardSwList(String equipmentid){
+		System.out.println("equipmentid: "+equipmentid);
+		List<SwBean> list=sqlsessiontemplate.selectList(namespace+".SelectStandardSw",equipmentid);
 		return list;
 	}
 	
-	public List<SwBean> getExploreList(){
-		List<SwBean> list=sqlsessiontemplate.selectList(namespace+".SelectExplorer");
+	public List<SwBean> getExploreList(String equipmentid){
+		List<SwBean> list=sqlsessiontemplate.selectList(namespace+".SelectExplorer",equipmentid);
 		return list;
 	}
 	
-	public List<SwBean> getOsList(){
-		List<SwBean> list=sqlsessiontemplate.selectList(namespace+".SelectOS");
+	public List<SwBean> getOsList(String equipmentid){
+		List<SwBean> list=sqlsessiontemplate.selectList(namespace+".SelectOS",equipmentid);
 		return list;
 	}
 	
@@ -87,6 +88,10 @@ public class EquipSwDao {
 			}
 		}
 		return sumSwname;
+	}
+	
+	public void allDeleteSw(String equipmentid){
+		sqlsessiontemplate.delete(namespace+".DeleteSw",equipmentid);
 	}
 	
 }

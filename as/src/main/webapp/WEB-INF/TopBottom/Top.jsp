@@ -144,28 +144,7 @@
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i>상용 소프트웨어 현황</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i>OS 설치 현황<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="OSlist.os"><i class="fa fa-wrench fa-fw"></i>OS 설치 현황<span class="fa arrow"></span></a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Explorer설치 현황<span class="fa arrow"></span></a>
@@ -198,19 +177,11 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> 표준 SW버전 현황<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="SwVersionManagement.stswtb"><i class="fa fa-files-o fa-fw"></i> 표준 SW 버전 현황<span class="fa arrow"></span></a>
+
                         </li>
                         <li>
-                        	<a href="#"><i class="fa fa-files-o fa-fw"></i>표준 SW 기준표<span class="fa arrow"></span></a>
+                        	<a href="StandardSwTable.stswtb"><i class="fa fa-files-o fa-fw"></i>표준 SW 기준표<span class="fa arrow"></span></a>
                         </li>
                     </ul>
                 </div>

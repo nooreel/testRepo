@@ -129,6 +129,22 @@
 
 
 <servlet>
+     <servlet-name>stswtb</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/stswtb-context.xml</param-value>
+     </init-param>
+</servlet>
+
+<servlet-mapping>
+     <servlet-name>stswtb</servlet-name>
+     <url-pattern>*.stswtb</url-pattern>
+</servlet-mapping>
+
+
+
+<servlet>
      <servlet-name>es</servlet-name>
      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
      <init-param>
@@ -142,7 +158,19 @@
      <url-pattern>*.es</url-pattern>
 </servlet-mapping>
 
+<servlet>
+     <servlet-name>os</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/os-context.xml</param-value>
+     </init-param>
+</servlet>
 
+<servlet-mapping>
+     <servlet-name>os</servlet-name>
+     <url-pattern>*.os</url-pattern>
+</servlet-mapping>
 
 
 
