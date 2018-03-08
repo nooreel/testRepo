@@ -74,7 +74,14 @@
 			</div><!-- panel 끝 -->
 			<div class="panel panel-primary">
 				<div class="panel panel-heading">
-					장비목록
+							<table width="100%">
+							<tr>
+								<td width=80%>장비목록</td>
+								<td width=20% align="right">
+									<a href="EquipmentRegist.eq" style="color:white;">Write</a>
+								</td>
+							</tr>
+					</table>
 				</div>
 				<div class="panel panel-body">
 					<table class="table">
@@ -116,11 +123,32 @@
 								SW등록하기
 								</a>
 								</td>
-								<td>Edit</td>
-								<td>Delete</td>
+								
+								 <!-- 장비등록 Edit, Delete -->
+								<td><a href="EquipmentUpdate.eq?equipmentid=${eqlist.equipmentid}">Edit</a></td>
+								<td><a href="EquipmentDelete.eq?equipmentid=${eqlist.equipmentid}">Delete</a></td> 
 							</tr>
 						</c:forEach>
+						<td colspan=9 align=center>
+									<form action="EquipSwConfig.es" method="get">
+										<select name="eqwhatColumn">
+											<option value="equipmentid">장비ID</option>
+											<option value="equipmenttype">장비타입</option>
+											<option value="employeenumber">담당자사번</option>
+										</select>
+										<input type="text" name="eqkeyword" style="width:60%;">
+										<input type="hidden" name="eqpageNumber" value="${pageNumber}">
+										<input type="submit" value="검색" class="btn btn-primary">
+									</form>	
+								</td>
+								
+							<tr>
+								<td colspan=9 style="text-align:right">${eqpagehtml}</td>
+							</tr>
 						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
 							<td></td>
 							<td></td>
 							<td></td>

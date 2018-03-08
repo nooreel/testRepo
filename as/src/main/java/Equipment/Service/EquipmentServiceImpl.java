@@ -16,5 +16,28 @@ public class EquipmentServiceImpl implements EquipmentService{
 	public void EquipmentRegist(EquipmentBean bean) {
 		equipmentdao.equipmentRegist(bean);
 	}
+	
+	@Override
+	public EquipmentBean EqupimentSelect(String equipmentid) {
+		EquipmentBean bean= equipmentdao.equipmentSelect(equipmentid);
+		return bean;
+	}
+
+
+
+	@Override
+	public void EquipmentDelete(String equipmentid) {
+		equipmentdao.equipmentDelete(equipmentid);
+		
+		
+	}
+
+	@Override
+	public void EquipmentUpdate(EquipmentBean bean) {
+		equipmentdao.equipmentUpdate(bean);
+		
+	}
+
+
 
 }

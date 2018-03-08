@@ -24,16 +24,19 @@ public class EquipSwController {
 	EquipSwService EquipSwservice;
 	
 	@RequestMapping(value="EquipSwConfig.es")
-	public ModelAndView goEquipSwConfig(@RequestParam(value="pageNumber",required=false) String textpageNumber,
+	public ModelAndView goEquipSwConfig(
+			@RequestParam(value="pageNumber",required=false) String textpageNumber,
 			@RequestParam(value="whatColumn",required=false) String whatColumn,
 			@RequestParam(value="keyword",required=false) String keyword,
 			@RequestParam(value="eqpageNumber",required=false) String eptextpageNumber,
 			@RequestParam(value="eqwhatColumn",required=false) String eqwhatColumn,
 			@RequestParam(value="eqkeyword",required=false) String eqkeyword
 			) {
+		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("EquipSwConfig");
 		
+		/*SW*/
 		Map<String, String> map=new HashMap<String,String>();
 		map.put("whatColumn",whatColumn);
 		map.put("keyword","%"+keyword+"%");
@@ -45,19 +48,20 @@ public class EquipSwController {
 		
 		System.out.println("keyword:"+keyword);
 		System.out.println("keyword:"+map.get("keyword"));
-		
 		mav.addObject("swlist",swlist);
 		mav.addObject("swpagehtml",swpaging.getPagingHtml());
 		mav.addObject("pageNumber",textpageNumber);
 		mav.addObject("whatColumn",whatColumn);
 		mav.addObject("keyword",keyword);
 		
+		
+		
+		/*¿Â∫Ò*/
 		Map<String, String> eqmap=new HashMap<String,String>();
 		eqmap.put("whatColumn", eqwhatColumn);
-		eqmap.put("keyword", eqkeyword);
+		eqmap.put("keyword", "%"+eqkeyword+"%");
 		
 		int eqtotalCount=EquipSwservice.getEqListSize(eqmap);
-		
 		EqPaging eqpaging=new EqPaging(eptextpageNumber, eqtotalCount, "EquipSwConfig.es", eqmap.get("whatColumn"), eqkeyword);
 		List<EquipmentBean> eqlist=EquipSwservice.getEqList(eqpaging, eqmap);
 		
@@ -66,9 +70,6 @@ public class EquipSwController {
 		mav.addObject("eqpageNumber",eptextpageNumber);
 		mav.addObject("eqwhatColumn",eqwhatColumn);
 		mav.addObject("eqkeyword",eqkeyword);
-		
-		
-		
 		
 		return mav;
 	}

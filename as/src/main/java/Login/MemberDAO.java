@@ -24,6 +24,6 @@ public class MemberDAO {
 		
 		
 		
-		return (one==null)?false:true;
+		return (one==null)?false:true; 
 	}
 }

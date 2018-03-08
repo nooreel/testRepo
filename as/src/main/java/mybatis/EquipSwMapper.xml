@@ -6,18 +6,18 @@
 <mapper namespace="EquipSwMapper">
 
 <select id="SelectSwList" resultType="sw.Model.SwBean" parameterType="Hashmap">
-select * from tb_sw 
-<if test="whatColumn=='swname'">where swname like #{keyword}</if>
-<if test="whatColumn=='swtype'">where swtype like #{keyword}</if>
-<if test="whatColumn=='maker'">where maker like #{keyword}</if>
+select * from tb_sw where active=0
+<if test="whatColumn=='swname'">and swname like #{keyword}</if>
+<if test="whatColumn=='swtype'">and swtype like #{keyword}</if>
+<if test="whatColumn=='maker'">and maker like #{keyword}</if>
 
 </select>
 
 <select id="GetTotalCountSw" resultType="int" parameterType="Hashmap">
-select count(*) from tb_sw
-<if test="whatColumn=='swname'">where swname like #{keyword}</if>
-<if test="whatColumn=='swtype'">where swtype like #{keyword}</if>
-<if test="whatColumn=='maker'">where maker like #{keyword}</if>
+select count(*) from tb_sw where active=0
+<if test="whatColumn=='swname'">and swname like #{keyword}</if>
+<if test="whatColumn=='swtype'">and swtype like #{keyword}</if>
+<if test="whatColumn=='maker'">and maker like #{keyword}</if>
 
 </select>
 
@@ -48,17 +48,17 @@ group by s.swname
 order by s.swnumber asc</select>
 
 <select id="GetTotalCountEq" parameterType="Hashmap" resultType="int">
-select count(*) from tb_equipment
-<if test="whatColumn=='equipmenttype'">where equipmenttype like #{keyword}</if>
-<if test="whatColumn=='employeenumber'">where employeenumber like #{keyword}</if>
-<if test="whatColumn=='equipmentid'">where equipmentid like #{keyword}</if>
+select count(*) from tb_equipment where active=0
+<if test="whatColumn=='equipmenttype'">and equipmenttype like #{keyword}</if>
+<if test="whatColumn=='employeenumber'">and employeenumber like #{keyword}</if>
+<if test="whatColumn=='equipmentid'">and equipmentid like #{keyword}</if>
 </select>
 
 <select  id="SelectEqList" parameterType="Hashmap" resultType="Equipment.Model.EquipmentBean">
-select * from tb_equipment 
-<if test="whatColumn=='equipmenttype'">where equipmenttype like #{keyword}</if>
-<if test="whatColumn=='employeenumber'">where employeenumber like #{keyword}</if>
-<if test="whatColumn=='equipmentid'">where equipmentid like #{keyword}</if>
+select * from tb_equipment where active=0
+<if test="whatColumn=='equipmenttype'">and equipmenttype like #{keyword}</if>
+<if test="whatColumn=='employeenumber'">and employeenumber like #{keyword}</if>
+<if test="whatColumn=='equipmentid'">and equipmentid like #{keyword}</if>
 </select>
 
 <insert id="InsertSwToEquipSwTable" parameterType="EquipSw.Model.EquipSwBean">
