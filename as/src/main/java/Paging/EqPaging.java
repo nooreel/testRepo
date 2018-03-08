@@ -84,9 +84,9 @@ public class EqPaging {
 		if (this.beginPage != 1) { //앞쪽, pageSize:한 화면에 보이는 레코드 수
 			// 처음 목록보기를 하면 pageNumber는 1이 되고 beginPage도 1이 된다. 
 			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + ( 1 ) + "&pageSize=" + this.pageSize + "'>맨 처음</a>&nbsp;" ;
+					+ "?eqpageNumber=" + ( 1 ) + "&pageSize=" + this.pageSize + "'>맨 처음</a>&nbsp;" ;
 			result += "&nbsp;<a href='" + url 
-					+ "?pageNumber=" + (this.beginPage - 1 ) + "&pageSize=" + this.pageSize 
+					+ "?eqpageNumber=" + (this.beginPage - 1 ) + "&pageSize=" + this.pageSize 
 					+ added_param + "'>이전</a>&nbsp;" ;
 		}
 		
@@ -97,7 +97,7 @@ public class EqPaging {
 						
 			} else {
 				result += "&nbsp;<a href='" + url   
-						+ "?pageNumber=" + i + "&pageSize=" + this.pageSize 
+						+ "?eqpageNumber=" + i + "&pageSize=" + this.pageSize 
 						+ added_param + "'>" + i + "</a>&nbsp;" ;
 				
 			}
@@ -107,11 +107,11 @@ public class EqPaging {
 			// endPage:지금 보는 페이지의 끝(지금 보는 페이지가 13이라면 endPage는 20), totalPage:전체 페이지수
 			
 			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + (this.endPage + 1 ) + "&pageSize=" + this.pageSize 
+					+ "?eqpageNumber=" + (this.endPage + 1 ) + "&pageSize=" + this.pageSize 
 					+ added_param + "'>다음</a>&nbsp;" ;
 			
 			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + (this.totalPage ) + "&pageSize=" + this.pageSize 
+					+ "?eqpageNumber=" + (this.totalPage ) + "&pageSize=" + this.pageSize 
 					+ added_param + "'>맨 끝</a>&nbsp;" ;
 		}		
 		

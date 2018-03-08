@@ -17,7 +17,8 @@ public class SwDeleteController {
 	@RequestMapping(value="swDelete.sw")
 	public ModelAndView swDelete(@RequestParam(value="swnumber") String swnumber) {
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("redirect:EquipSwConfig.es");		
+		
+		mav.setViewName("redirect:EquipSwConfig.es");
 		swservice.swDelete(swnumber);
 		return mav;
 	}

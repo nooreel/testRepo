@@ -16,4 +16,19 @@ public class EquipmentDao {
 		sqlsessiontemplate.insert(namespace+".EquipmentRegist",bean);
 	}
 	
+	public EquipmentBean equipmentSelect(String equipmentid) {
+		EquipmentBean bean = sqlsessiontemplate.selectOne(namespace+".EquipmentSelect", equipmentid);
+		return bean;
+		
+	}
+	
+	public void equipmentUpdate(EquipmentBean bean) {
+		sqlsessiontemplate.update(namespace+".EquipmentUpdate", bean);
+		
+	}
+	
+	
+	public void equipmentDelete(String equipmentid) {
+		sqlsessiontemplate.delete(namespace+".EquipmentDelete", equipmentid);
+	}
 }

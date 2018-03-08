@@ -10,9 +10,10 @@
 	values(#{swname},#{swversion},'관리자','관리자',#{swtype},#{bit},#{maker},#{used},#{quantity})
 </insert>
 
-<delete id="SwDelete" parameterType="String">
-	delete from tb_sw where swnumber=#{swnumber}
-</delete>
+<update id="SwDelete" parameterType="String">
+	update tb_sw set active=1
+	where swnumber=#{swnumber}
+</update>
 
 <select id="GetSwRecord" parameterType="String" resultType="sw.Model.SwBean">
 	select * from tb_sw where swnumber=#{swnumber}

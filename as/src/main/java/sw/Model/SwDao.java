@@ -19,7 +19,8 @@ public class SwDao {
 	}
 	
 	public void swDelete(String swnumber) {
-		sqlsessiontemplate.delete(namespace+".SwDelete",swnumber);
+		sqlsessiontemplate.update(namespace+".SwDelete",swnumber);
+		
 	}
 	
 	public SwBean getSwRecord(String swnumber) {
