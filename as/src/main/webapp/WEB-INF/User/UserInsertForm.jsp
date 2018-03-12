@@ -40,6 +40,7 @@ function employeeNumberCheck(){
 		url:"employeeNumberCheck.us",
 		data:{employeenumber:employeenumber},
 		success:function(data){
+			alert(data);
 			chkyes=true;
 			$("#numberTestResult").text(data);
 			if(data=="사용 가능한 사번입니다"){

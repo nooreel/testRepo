@@ -14,8 +14,18 @@ public class EmployeeBean {
 	private String employeeposition;
 	private int privilege;
 	private String email;
+	private String auth;
+	
+
 	
 	
+
+	public String getAuth() {
+		return auth;
+	}
+	public void setAuth(String auth) {
+		this.auth = auth;
+	}
 	public Date getBirth() {
 		return birth;
 	}

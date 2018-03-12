@@ -99,6 +99,11 @@
                         <i class="fa fa-user fa-fw"></i>사용자 등록
                     </a>
                 </li>
+                <li><h6>
+                <a href="userFound.uf"> 아이디 </a>
+                /
+                <a href="pwFound.uf"> 비밀번호 찾기  </a>
+                </h6></li>
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->

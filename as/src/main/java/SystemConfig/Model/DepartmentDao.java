@@ -28,7 +28,6 @@ public class DepartmentDao {
 	
 	public void UpdateDepartment(AreaOfficeDepartmentBean bean) {
 		sqlsessiontemplate.update(namespace+".UpdateDepartment",bean);
-		
 	}
 	
 }

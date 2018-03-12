@@ -82,7 +82,11 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
-
+<dependency>
+    <groupId>javax.mail</groupId>
+    <artifactId>mail</artifactId>
+    <version>1.4</version>
+</dependency>
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>
@@ -108,6 +112,8 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+	
+
 		<!-- myBatis -->
 		<dependency>
 		<groupId>org.mybatis</groupId>

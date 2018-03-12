@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="UserFoundMapper">
+
+<select id="UserFoundList" resultType="String" parameterType="EmployeeBean">
+select employeenumber from tb_employee where birth=#{birth} AND email=#{email} AND employeename=#{employeename} 
+</select>
+
+
+<select id="PwFoundList" resultType="String" parameterType="EmployeeBean">
+select email from tb_employee where birth=#{birth} AND email=#{email} AND employeename=#{employeename} AND employeenumber=#{employeenumber}
+</select>
+
+<insert id="AuthList" parameterType="EmployeeBean">
+insert into tb_pwauth(pw_auth,employeenumber) values (#{auth},#{employeenumber})
+</insert>
+
+<select id="AuthPwList" resultType="String" parameterType="String">
+select pw_auth from tb_pwauth where pw_auth=#{auth}
+</select>
+
+<update id="PwChange" parameterType="EmployeeBean">
+update tb_employee set password=#{password} where employeenumber=#{employeenumber}
+</update>
+
+<delete id="DeleteNum" parameterType="EmployeeBean">
+delete from tb_pwauth where employeenumber=#{employeenumber}
+</delete>
+
+</mapper>

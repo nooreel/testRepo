@@ -10,6 +10,14 @@ public class EmployeeBean {
 	private Date birth;
 	private String employeename;
 	private String employeeposition;
+	private String email;
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getAreaname() {
 		return areaname;
 	}

@@ -11,6 +11,7 @@ PUBLIC "-//mybatis.org//DTD config 3.0//EN"
 	<typeAlias alias="OfficeBean" type="User.Model.OfficeBean"></typeAlias>
 	<typeAlias alias="DepartmentBean" type="User.Model.DepartmentBean"></typeAlias>
 	<typeAlias alias="EmployeeBean" type="User.Model.EmployeeBean"></typeAlias>
+	
 </typeAliases>
 
 
@@ -25,6 +26,8 @@ PUBLIC "-//mybatis.org//DTD config 3.0//EN"
 <mapper resource="mybatis/EmployeeMapper.xml"></mapper>
 <mapper resource="mybatis/SwMapper.xml"></mapper>
 <mapper resource="mybatis/LoginMapper.xml"/>
+<mapper resource="mybatis/UserFoundMapper.xml"/>
+
 
 </mappers>
 

@@ -100,6 +100,34 @@
      <url-pattern>*.sw</url-pattern>
 </servlet-mapping>
 
+<servlet>
+     <servlet-name>osw</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/sw-context.xml</param-value>
+     </init-param>
+</servlet>
+
+<servlet-mapping>
+     <servlet-name>osw</servlet-name>
+     <url-pattern>*.osw</url-pattern>
+</servlet-mapping>
+
+<servlet>
+     <servlet-name>uf</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/found-context.xml</param-value>
+     </init-param>
+</servlet>
+
+<servlet-mapping>
+     <servlet-name>uf</servlet-name>
+     <url-pattern>*.uf</url-pattern>
+</servlet-mapping>
+
 
 <servlet>
 
