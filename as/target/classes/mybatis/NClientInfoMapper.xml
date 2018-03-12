@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="NClientInfoMapper">
+
+<select id="GetTotalCountNClientInfoByArea" resultType="int" parameterType="Hashmap">
+select count(*) 
+from (select a.area_seq,a.areaname,
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_area a2 on em.area_seq=a2.area_seq
+where em.area_seq=a.area_seq and eq.assetYN=0) as 'assetcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_area a2 on em.area_seq=a2.area_seq
+where em.area_seq=a.area_seq and eq.assetYN=0 and eq.nclientsetup=0) as 'assetrecevingcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_area a2 on em.area_seq=a2.area_seq
+where em.area_seq=a.area_seq and eq.assetYN=1) as 'notassetcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_area a2 on em.area_seq=a2.area_seq
+where em.area_seq=a.area_seq and eq.assetYN=1 and eq.nclientsetup=0) as 'notassetrecevingcount'
+ from tb_area a where active=0
+ <if test="fixedDate!='null'">
+ and date(created)>=#{fixedDate}
+ </if>
+ ) nclientcnt
+
+</select>
+
+<select id="GetNClientInfoByArea" resultType="nclientInfo.Model.NclientInfoByAreaBean" parameterType="Hashmap">
+select a.area_seq,a.areaname,
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_area a2 on em.area_seq=a2.area_seq
+where em.area_seq=a.area_seq and eq.assetYN=0) as 'assetcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_area a2 on em.area_seq=a2.area_seq
+where em.area_seq=a.area_seq and eq.assetYN=0 and eq.nclientsetup=0) as 'assetrecevingcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_area a2 on em.area_seq=a2.area_seq
+where em.area_seq=a.area_seq and eq.assetYN=1) as 'notassetcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_area a2 on em.area_seq=a2.area_seq
+where em.area_seq=a.area_seq and eq.assetYN=1 and eq.nclientsetup=0) as 'notassetrecevingcount'
+ from tb_area a where active=0
+  <if test="fixedDate!='null'">
+ and date(created)>=#{fixedDate}
+ </if>
+</select>
+
+<select id="getAreaToDepartmentTotalCount" resultType="int" parameterType="String">
+select count(*) from (select a.area_seq,a.areaname,o.officename,d.department_seq,d.departmentname,
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+where eq.assetYN=0 and em.department_seq=d.department_seq) as 'assetcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+where eq.assetYN=0 and eq.nclientsetup=0 and em.department_seq=d.department_seq) as 'assetrecevingcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+where eq.assetYN=1 and em.department_seq=d.department_seq) as 'notassetcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+where eq.assetYN=1 and eq.nclientsetup=0 and em.department_seq=d.department_seq) as 'notassetrecevingcount'
+from tb_department d join tb_office o on d.office_seq=o.office_seq
+join tb_area a on o.area_seq=a.area_seq
+where a.area_seq=#{area_seq} and a.active=0) areadpcount
+</select>
+
+<select id="getAreaToDepartmentList" resultType="nclientInfo.Model.NclientInfoByAreaToDepartmentBean" parameterType="String">
+select a.area_seq,a.areaname,o.officename,d.department_seq,d.departmentname,
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+where eq.assetYN=0 and em.department_seq=d.department_seq) as 'assetcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+where eq.assetYN=0 and eq.nclientsetup=0 and em.department_seq=d.department_seq) as 'assetrecevingcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+where eq.assetYN=1 and em.department_seq=d.department_seq) as 'notassetcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+where eq.assetYN=1 and eq.nclientsetup=0 and em.department_seq=d.department_seq) as 'notassetrecevingcount'
+from tb_department d join tb_office o on d.office_seq=o.office_seq
+join tb_area a on o.area_seq=a.area_seq
+where a.area_seq=#{area_seq} and a.active=0
+</select>
+
+</mapper>

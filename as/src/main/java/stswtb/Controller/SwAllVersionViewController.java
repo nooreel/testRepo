@@ -30,13 +30,17 @@ public class SwAllVersionViewController {
 			, HttpServletResponse response
 			,@RequestParam(value="pageNumber",required=false) String textpageNumber) {
 		
+		
+		System.out.println("들어온 swname:"+swname);
+		System.out.println("들어온  pageNumber:"+textpageNumber);
+		
 		Map<String, String> map=new HashMap<String,String>();
 		map.put("swname", swname);
 		
 		
 		int totalCount=stswtbservice.getTotalCountFromSwAllVersion(map);
 		
-		SwAllVersionPaging paging=new SwAllVersionPaging(textpageNumber, totalCount, "GetSwAllVersion.stswtb", null);
+		SwAllVersionPaging paging=new SwAllVersionPaging(textpageNumber, totalCount, "GetSwAllVersion.stswtb", null,swname);
 		
 		List<SwVersionManagementBean> swalist=stswtbservice.getSwAllVersion(paging,map);
 		

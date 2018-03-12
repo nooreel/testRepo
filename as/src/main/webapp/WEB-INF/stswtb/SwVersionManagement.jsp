@@ -21,6 +21,8 @@
 				</form>
 				
 <script>
+
+
 function getRecordBySwDate(){
 	var swDate=$('input[name=swDate]').val();
 	alert(swDate);
@@ -39,9 +41,22 @@ function ftest(swname){
 			}
 	})
 }
+function ftest2(swname,pageNumber){
+	alert("pageNumber "+pageNumber);
+	
+	$.ajax({
+		url:"GetSwAllVersion.stswtb",
+		data:{swname:swname,pageNumber:pageNumber},
+		success:function(data){
+			$("#AllVersionDiv").html(data);
+			
+			}
+	})
+}
+
+
 
 </script>
-			
 					<table class="table table-striped table-bordered">
 						<tr>
 							<td rowspan=2>S/W명</td>

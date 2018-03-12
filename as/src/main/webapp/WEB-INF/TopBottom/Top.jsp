@@ -126,22 +126,16 @@
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 메인화면</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 권역별 정보현황<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Morris.js Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="NclientInfoByArea.ni"><i class="fa fa-bar-chart-o fa-fw"></i> 권역별 정보현황</a>
                         </li>
                         <li>
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i>사용자현황</a>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i>상용 소프트웨어 현황</a>
+                        </li>
+                        <li>
+                        	<a href="WindowsPatch.wp"><i class="fa fa-edit fa-fw"></i>WINDOWS 패치 현황(상세)</a>
                         </li>
                         <li>
                             <a href="OSlist.os"><i class="fa fa-wrench fa-fw"></i>OS 설치 현황<span class="fa arrow"></span></a>

@@ -15,6 +15,8 @@
 		<config>src/main/webapp/WEB-INF/spring/appServlet/EquipSwConfig-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/stswtb-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/os-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/wp-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/NclientInfo-context.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/login-context.xml</config>
