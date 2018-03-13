@@ -17,6 +17,8 @@
 		<config>src/main/webapp/WEB-INF/spring/appServlet/os-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/wp-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/NclientInfo-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/exp-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/currentUser-context.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/login-context.xml</config>

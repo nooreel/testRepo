@@ -130,7 +130,7 @@
                             <a href="NclientInfoByArea.ni"><i class="fa fa-bar-chart-o fa-fw"></i> 권역별 정보현황</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i>사용자현황</a>
+                            <a href="user.user"><i class="fa fa-table fa-fw"></i>사용자현황</a>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i>상용 소프트웨어 현황</a>
@@ -142,35 +142,8 @@
                             <a href="OSlist.os"><i class="fa fa-wrench fa-fw"></i>OS 설치 현황<span class="fa arrow"></span></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Explorer설치 현황<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                            <a href="explorer.exp"><i class="fa fa-sitemap fa-fw"></i> Explorer설치 현황<span class="fa arrow"></span></a>
+
                         <li>
                             <a href="SwVersionManagement.stswtb"><i class="fa fa-files-o fa-fw"></i> 표준 SW 버전 현황<span class="fa arrow"></span></a>
 
