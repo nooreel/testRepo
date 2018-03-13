@@ -93,4 +93,25 @@ join tb_area a on o.area_seq=a.area_seq
 where a.area_seq=#{area_seq} and a.active=0
 </select>
 
+
+<select id="exceltest" resultType="nclientInfo.Model.NclientInfoByAreaBean">
+select a.area_seq,a.areaname,
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_area a2 on em.area_seq=a2.area_seq
+where em.area_seq=a.area_seq and eq.assetYN=0) as 'assetcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_area a2 on em.area_seq=a2.area_seq
+where em.area_seq=a.area_seq and eq.assetYN=0 and eq.nclientsetup=0) as 'assetrecevingcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_area a2 on em.area_seq=a2.area_seq
+where em.area_seq=a.area_seq and eq.assetYN=1) as 'notassetcount',
+(select count(*) from tb_equipment eq 
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_area a2 on em.area_seq=a2.area_seq
+where em.area_seq=a.area_seq and eq.assetYN=1 and eq.nclientsetup=0) as 'notassetrecevingcount'
+ from tb_area a
+</select>
 </mapper>

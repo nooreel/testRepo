@@ -21,12 +21,31 @@
 		</property>
 	</bean>	
 	
+
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/NclientInfo/" />
 		<property name="suffix" value=".jsp" />
+		<property name="order" value="2"></property>
 	</bean>
+
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="1" />
+    </bean>
+     
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
+        <property name="order" value="0"/> 
+        <property name="defaultErrorView" value="error"/> 
+        <property name="exceptionMappings"> 
+            <props> 
+                <prop key="RuntimeException">error</prop> 
+            </props> 
+        </property>
+    </bean>
+
+	<bean id="excelView" class="nclientInfo.Model.ExcelBuilder"></bean>
+
 	
 	<context:component-scan base-package="nclientInfo" />
 
