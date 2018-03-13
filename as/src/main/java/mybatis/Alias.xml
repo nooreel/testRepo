@@ -26,8 +26,14 @@ PUBLIC "-//mybatis.org//DTD config 3.0//EN"
 <mapper resource="mybatis/EquipSwMapper.xml"/>
 <mapper resource="mybatis/EquipmentMapper.xml"/>
 <mapper resource="mybatis/StswtbMapper.xml"/>
+<<<<<<< HEAD
 <mapper resource="mybatis/ExplorerMapper.xml"/>
 <mapper resource="mybatis/CurrentUserMapper.xml"/>
+=======
+<mapper resource="mybatis/OS.xml"/>
+<mapper resource="mybatis/WindowsMapper.xml"/>
+<mapper resource="mybatis/NClientInfoMapper.xml"/>
+>>>>>>> branch 'master' of https://github.com/nooreel/testRepo.git
 </mappers>
 
 </configuration>

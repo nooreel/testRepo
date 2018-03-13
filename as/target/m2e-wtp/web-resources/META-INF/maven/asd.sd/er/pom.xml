@@ -136,6 +136,7 @@
 		<artifactId>mariadb-java-client</artifactId>
 		<version>1.6.0</version>
 		</dependency>
+<<<<<<< HEAD
 				<!-- json -->
 	        <dependency>
             <groupId>org.codehaus.jackson</groupId>
@@ -149,6 +150,16 @@
         </dependency>
 
 	
+=======
+		
+		<dependency>
+	    <groupId>org.codehaus.jackson</groupId>
+	    <artifactId>jackson-mapper-asl</artifactId>
+	    <version>1.9.13</version>
+		</dependency>
+
+
+>>>>>>> branch 'master' of https://github.com/nooreel/testRepo.git
 	
 		<!-- Test -->
 		<dependency>

@@ -63,48 +63,49 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-            	<li>
-            		<a href="EquipSwConfig.es">
-            			<i class="fa fa-envelope fa-fw"></i>장비,SW관리
+          	<c:if test="${loginuser!=null }">
+          		<c:if test="${loginuser.privilege==1}">
+	       			<li class="dropdown">
+	            		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	            		<i class="fa fa-gears fa-fw"></i><i class="fa fa-caret-down"></i>
+	            		</a>
+	            	<ul class="dropdown-menu dropdown-alert">
+	            		<li><a href="SystemConfig.sc"><i class="fa fa-th-list fa-fw"></i> 인사관리</a></li>
+	            		<li class="divider"></li>
+	            		<li><a href="EquipSwConfig.es"><i class="fa fa-th-list fa-fw"></i> 장비,SW관리</a></li>
+	            	</ul>
+	            		
+	            	</li><!-- li dropdown 끝 -->
+          		</c:if>
+          	</c:if>
+            	
+            	<li class="dropdown">
+            		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            			<i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
             		</a>
-            	</li>
-            	<li>
-                    <a href="SwRegist.sw">
-                        <i class="fa fa-envelope fa-fw"></i>소프트웨어 등록
-                    </a>
-                </li>
-            	<li>
-                    <a href="EquipmentRegist.eq">
-                        <i class="fa fa-envelope fa-fw"></i>장비등록
-                    </a>
-                </li>
-                <li>
-                    <a href="SystemConfig.sc">
-                        <i class="fa fa-envelope fa-fw"></i> 인사관리
-                    </a>
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
+            	<ul class="dropdown-menu dropdown-alert">
+                    <li>
                     <c:choose>
                 		<c:when test="${loginuser eq null}">
                 		<a href="login.login">
-                			<i class="fa fa-tasks fa-fw"></i>로그인
+                			<i class="fa fa-tasks fa-fw"></i>&nbsp로그인
                 		 </a>
                 		</c:when>
                 		<c:otherwise>
                 		<a href="logOut.login">
-                			<i class="fa fa-tasks fa-fw"></i>로그아웃
+                			<i class="fa fa-tasks fa-fw"></i>&nbsp로그아웃
                 			 </a>
                 		</c:otherwise>
                 	</c:choose>
-                </li>
-               
-                <li>
-                    <a href="UserInsertForm.us">
-                        <i class="fa fa-user fa-fw"></i>사용자 등록
-                    </a>
-                </li>
-                <!-- /.dropdown -->
+                	</li>
+                	<li class="divider"></li>
+                	<li>
+						<a href="UserInsertForm.us">
+	                        <i class="fa fa-user fa-fw"></i>&nbsp사용자 등록
+	                    </a>                		
+                	</li>
+            	</ul>	
+            	</li> <!-- dropdown li 끝 -->
             </ul>
             <!-- /.navbar-top-links -->
 
@@ -123,25 +124,19 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 메인화면</a>
+                            <a href="goMain.mainpage"><i class="fa fa-dashboard fa-fw"></i> 메인화면</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 권역별 정보현황<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Morris.js Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="NclientInfoByArea.ni"><i class="fa fa-bar-chart-o fa-fw"></i> 권역별 정보현황</a>
                         </li>
                         <li>
                             <a href="user.user"><i class="fa fa-table fa-fw"></i>사용자현황</a>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i>상용 소프트웨어 현황</a>
+                        </li>
+                        <li>
+                        	<a href="WindowsPatch.wp"><i class="fa fa-edit fa-fw"></i>WINDOWS 패치 현황(상세)</a>
                         </li>
                         <li>
                             <a href="OSlist.os"><i class="fa fa-wrench fa-fw"></i>OS 설치 현황<span class="fa arrow"></span></a>

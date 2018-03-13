@@ -22,8 +22,23 @@
 							</tr>
 					</table>
 				</div>
-				<div class="pane panel-body">
+				<div class="">
 						<table class="table table-bordered">
+							<tr>		
+								<td colspan=9 align=left>
+									<form action="EquipSwConfig.es" method="get">
+										<select name="whatColumn">
+											<option value="swname">SW명</option>
+											<option value="swtype">SW타입</option>
+											<option value="maker">제조사</option>
+										</select>
+										<input type="text" name="keyword" style="width:60%;">
+										<input type="hidden" name="pageNumber" value="${pageNumber}">
+										<input type="hidden" name="swtype" value="${swtype}">
+										<input type="submit" value="검색" class="btn btn-primary">
+									</form>	
+								</td>
+							</tr>
 							<tr>
 								<td>SW명</td>
 								<td>SW버전</td>
@@ -48,26 +63,9 @@
 								<td><a href="swDelete.sw?swnumber=${swlist.swnumber}">Delete</a></td>
 							</tr>
 						</c:forEach>
-						
+
 							<tr>
-								
-								<td colspan=9 align=center>
-									<form action="EquipSwConfig.es" method="get">
-										<select name="whatColumn">
-											<option value="swname">SW명</option>
-											<option value="swtype">SW타입</option>
-											<option value="maker">제조사</option>
-										</select>
-										<input type="text" name="keyword" style="width:60%;">
-										<input type="hidden" name="pageNumber" value="${pageNumber}">
-										<input type="hidden" name="swtype" value="${swtype}">
-										<input type="submit" value="검색" class="btn btn-primary">
-									</form>	
-								</td>
-							</tr>
-						
-							<tr>
-								<td colspan=7 style="text-align:right">${swpagehtml}</td>
+								<td colspan=9 style="text-align:right">${swpagehtml}</td>
 							</tr>
 						</table>
 				</div>
@@ -83,8 +81,22 @@
 							</tr>
 					</table>
 				</div>
-				<div class="panel panel-body">
-					<table class="table">
+				<div class="">
+					<table class="table table-bordered">
+						<tr>
+							<td colspan=9 align=left>
+									<form action="EquipSwConfig.es" method="get">
+										<select name="eqwhatColumn">
+											<option value="equipmentid">장비ID</option>
+											<option value="equipmenttype">장비타입</option>
+											<option value="employeenumber">담당자사번</option>
+										</select>
+										<input type="text" name="eqkeyword" style="width:60%;">
+										<input type="hidden" name="eqpageNumber" value="${pageNumber}">
+										<input type="submit" value="검색" class="btn btn-primary">
+									</form>	
+							</td>
+						</tr>
 						<tr>
 							<td>장비ID</td>
 							<td>장비타입</td>
@@ -129,33 +141,10 @@
 								<td><a href="EquipmentDelete.eq?equipmentid=${eqlist.equipmentid}">Delete</a></td> 
 							</tr>
 						</c:forEach>
-						<td colspan=9 align=center>
-									<form action="EquipSwConfig.es" method="get">
-										<select name="eqwhatColumn">
-											<option value="equipmentid">장비ID</option>
-											<option value="equipmenttype">장비타입</option>
-											<option value="employeenumber">담당자사번</option>
-										</select>
-										<input type="text" name="eqkeyword" style="width:60%;">
-										<input type="hidden" name="eqpageNumber" value="${pageNumber}">
-										<input type="submit" value="검색" class="btn btn-primary">
-									</form>	
-								</td>
-								
 							<tr>
 								<td colspan=9 style="text-align:right">${eqpagehtml}</td>
 							</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
+
 					</table>
 				</div>
 			</div>

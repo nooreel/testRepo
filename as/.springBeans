@@ -15,8 +15,13 @@
 		<config>src/main/webapp/WEB-INF/spring/appServlet/EquipSwConfig-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/stswtb-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/os-context.xml</config>
+<<<<<<< HEAD
 		<config>src/main/webapp/WEB-INF/spring/appServlet/exp-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/currentUser-context.xml</config>
+=======
+		<config>src/main/webapp/WEB-INF/spring/appServlet/wp-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/NclientInfo-context.xml</config>
+>>>>>>> branch 'master' of https://github.com/nooreel/testRepo.git
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/login-context.xml</config>

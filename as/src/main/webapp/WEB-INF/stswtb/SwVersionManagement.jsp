@@ -21,6 +21,8 @@
 				</form>
 				
 <script>
+
+
 function getRecordBySwDate(){
 	var swDate=$('input[name=swDate]').val();
 	alert(swDate);
@@ -39,9 +41,22 @@ function ftest(swname){
 			}
 	})
 }
+function ftest2(swname,pageNumber){
+	alert("pageNumber "+pageNumber);
+	
+	$.ajax({
+		url:"GetSwAllVersion.stswtb",
+		data:{swname:swname,pageNumber:pageNumber},
+		success:function(data){
+			$("#AllVersionDiv").html(data);
+			
+			}
+	})
+}
+
+
 
 </script>
-			
 					<table class="table table-striped table-bordered">
 						<tr>
 							<td rowspan=2>S/W명</td>
@@ -61,10 +76,14 @@ function ftest(swname){
 						<td>${s.swname}</td>
 						<td>${s.assetdaesang}</td>
 						<td>${s.assetsetupcount}</td>
-						<td>${s.assetsetupcount/s.assetdaesang*100 }%</td>
+						<td>
+						<fmt:formatNumber value="${s.assetsetupcount/s.assetdaesang*100 }" pattern=".00" />
+						%</td>
 						<td>${s.notassetdaesang}</td>
 						<td>${s.notassetsetupcount}</td>
-						<td>${s.notassetsetupcount/s.notassetdaesang*100 }%</td>
+						<td>
+						<fmt:formatNumber value="${s.notassetsetupcount/s.notassetdaesang*100 }" pattern=".00" />
+						%</td>
 						</tr>
 					</c:forEach>
 						<tr>
