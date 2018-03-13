@@ -27,7 +27,13 @@ PUBLIC "-//mybatis.org//DTD config 3.0//EN"
 <mapper resource="mybatis/SwMapper.xml"></mapper>
 <mapper resource="mybatis/LoginMapper.xml"/>
 <mapper resource="mybatis/UserFoundMapper.xml"/>
-
+<mapper resource="mybatis/EquipSwMapper.xml"/>
+<mapper resource="mybatis/EquipmentMapper.xml"/>
+<mapper resource="mybatis/StswtbMapper.xml"/>
+<mapper resource="mybatis/OS.xml"/>
+<mapper resource="mybatis/WindowsMapper.xml"/>
+<mapper resource="mybatis/NClientInfoMapper.xml"/>
+<mapper resource="mybatis/CommercialSwMapper.xml"/>
 
 </mappers>
 

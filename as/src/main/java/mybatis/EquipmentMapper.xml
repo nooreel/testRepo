@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="EquipmentMapper">
+
+<insert id="EquipmentRegist" parameterType="Equipment.Model.EquipmentBean">
+insert into tb_equipment(equipmentid,equipmenttype,equipmentip,assetyn,nclientsetup,employeenumber,createdby,modifiedby)
+	values(#{equipmentid},#{equipmenttype},#{equipmentip},#{assetyn},#{nclientsetup},#{employeenumber},'관리자','관리자')
+</insert>
+
+
+<select id="EquipmentSelect" resultType="Equipment.Model.EquipmentBean">
+select * from tb_equipment where equipmentid like #{equipmentid}
+</select>
+
+<update id="EquipmentDelete">
+update tb_equipment set active=1 where equipmentid like #{equipmentid}
+</update>
+
+<update id="EquipmentUpdate">
+update tb_equipment set equipmenttype=#{equipmenttype}, equipmentip=#{equipmentip},assetyn=#{assetyn}, nclientsetup=#{nclientsetup}
+where equipmentid like #{equipmentid}
+</update>
+
+
+</mapper>

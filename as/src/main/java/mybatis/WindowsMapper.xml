@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="WindowsMapper">
+
+<select id="SelectWindowsPatchList" resultType="windowsPatch.Model.WindowsPatchBean" parameterType="Hashmap">
+select s.swnumber,s.swname,(select count(*) from tb_equipsw where swnumber=s.swnumber) as 'windowscount',
+(select count(*) from tb_equipsw where swnumber=s.swnumber and patch_percent=100) as 'perfect',
+(select count(*) from tb_equipsw where swnumber=s.swnumber and patch_percent between 90 and 99) as 'great',
+(select count(*) from tb_equipsw where swnumber=s.swnumber and patch_percent between 70 and 89) as 'good',
+(select count(*) from tb_equipsw where swnumber=s.swnumber and patch_percent between 50 and 69) as 'notbad',
+(select count(*) from tb_equipsw where swnumber=s.swnumber and patch_percent=49) as 'bad'
+from tb_sw s where s.swtype='OS' and s.swname like '%Windows%'
+<if test="fixedDate!='null'">
+and date(s.created)>#{fixedDate}
+</if>
+</select>
+
+<select id="GetTotalCount" resultType="int" parameterType="Hashmap">
+
+select count(*) from (select s.swnumber,s.swname,(select count(*) from tb_equipsw where swnumber=s.swnumber) as 'windowscount',
+(select count(*) from tb_equipsw where swnumber=s.swnumber and patch_percent=100) as 'perfect',
+(select count(*) from tb_equipsw where swnumber=s.swnumber and patch_percent between 90 and 99) as 'great',
+(select count(*) from tb_equipsw where swnumber=s.swnumber and patch_percent between 70 and 89) as 'good',
+(select count(*) from tb_equipsw where swnumber=s.swnumber and patch_percent between 50 and 69) as 'notbad',
+(select count(*) from tb_equipsw where swnumber=s.swnumber and patch_percent=49) as 'bad'
+from tb_sw s where s.swtype='OS' and s.swname like '%Windows%'
+<if test="fixedDate!='null'">
+and date(s.created)>#{fixedDate}
+</if>
+) cont
+
+</select>
+
+<select id="SelectAjaxTotalCount" resultType="int" parameterType="String">
+select count(*) from (select a.areaname,o.officename,d.departmentname,em.employeename,es.equipmentid,e.equipmentip,
+es.modified as '최종패치일시',
+es.patch_percent as '패치율'
+from tb_equipsw es join tb_equipment e on es.equipmentid=e.equipmentid
+join tb_employee em on e.employeenumber=em.employeenumber
+join tb_department d on em.department_seq=d.department_seq
+join tb_office o on d.office_seq=o.office_seq
+join tb_area a on o.area_seq=a.area_seq
+where es.swnumber=#{swnumber}) ccnt
+</select>
+
+<select id="SelectWindowsPatchUserList" parameterType="String" resultType="windowsPatch.Model.WindowsPatchUserBean">
+select a.areaname,o.officename,d.departmentname,em.employeename,es.equipmentid,e.equipmentip,
+es.modified,
+es.patch_percent
+from tb_equipsw es join tb_equipment e on es.equipmentid=e.equipmentid
+join tb_employee em on e.employeenumber=em.employeenumber
+join tb_department d on em.department_seq=d.department_seq
+join tb_office o on d.office_seq=o.office_seq
+join tb_area a on o.area_seq=a.area_seq
+where es.swnumber=#{swnumber}
+</select>
+
+</mapper>

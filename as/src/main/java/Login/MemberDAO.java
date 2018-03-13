@@ -20,7 +20,11 @@ public class MemberDAO {
 	public boolean loginCheck(EmployeeBean vo){
 
 		String one = sqlSession.selectOne(namespace+".loginCheck",vo);
-		
+
 		return (one==null)?false:true;
+
+		
+
+
 	}
 }

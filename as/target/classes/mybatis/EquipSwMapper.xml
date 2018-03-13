@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="EquipSwMapper">
+
+<select id="SelectSwList" resultType="sw.Model.SwBean" parameterType="Hashmap">
+select * from tb_sw where active=0
+<if test="whatColumn=='swname'">and swname like #{keyword}</if>
+<if test="whatColumn=='swtype'">and swtype like #{keyword}</if>
+<if test="whatColumn=='maker'">and maker like #{keyword}</if>
+
+</select>
+
+<select id="GetTotalCountSw" resultType="int" parameterType="Hashmap">
+select count(*) from tb_sw where active=0
+<if test="whatColumn=='swname'">and swname like #{keyword}</if>
+<if test="whatColumn=='swtype'">and swtype like #{keyword}</if>
+<if test="whatColumn=='maker'">and maker like #{keyword}</if>
+
+</select>
+
+<select id="SelectStandardSw" resultType="sw.Model.SwBean" parameterType="String">
+select s.swnumber,s.swname,s.swversion,s.swtype,es.patch_percent,es.equipmentid=#{equipmentid} as 'equipmentid'
+from tb_sw s left join tb_equipsw es 
+on s.swnumber=es.swnumber
+where s.swtype='표준SW'
+group by s.swname
+order by s.swnumber asc
+</select>
+
+<select id="SelectExplorer" resultType="sw.Model.SwBean" parameterType="String">
+select s.swnumber,s.swname,s.swversion,s.swtype,es.patch_percent,es.equipmentid=#{equipmentid} as 'equipmentid'
+from tb_sw s left join tb_equipsw es 
+on s.swnumber=es.swnumber
+where s.swtype='Explorer'
+group by s.swversion
+order by s.swnumber asc
+</select>
+
+<select id="SelectOS" resultType="sw.Model.SwBean" parameterType="String">
+select s.swnumber,s.swname,s.swversion,s.swtype,es.patch_percent,es.equipmentid=#{equipmentid} as 'equipmentid'
+from tb_sw s left join tb_equipsw es 
+on s.swnumber=es.swnumber
+where s.swtype='OS'
+group by s.swname
+order by s.swnumber asc</select>
+
+<select id="GetTotalCountEq" parameterType="Hashmap" resultType="int">
+select count(*) from tb_equipment where active=0
+<if test="whatColumn=='equipmenttype'">and equipmenttype like #{keyword}</if>
+<if test="whatColumn=='employeenumber'">and employeenumber like #{keyword}</if>
+<if test="whatColumn=='equipmentid'">and equipmentid like #{keyword}</if>
+</select>
+
+<select  id="SelectEqList" parameterType="Hashmap" resultType="Equipment.Model.EquipmentBean">
+select * from tb_equipment where active=0
+<if test="whatColumn=='equipmenttype'">and equipmenttype like #{keyword}</if>
+<if test="whatColumn=='employeenumber'">and employeenumber like #{keyword}</if>
+<if test="whatColumn=='equipmentid'">and equipmentid like #{keyword}</if>
+</select>
+
+<insert id="InsertSwToEquipSwTable" parameterType="EquipSw.Model.EquipSwBean">
+insert into tb_equipsw(equipmentid,swnumber,createdby,modifiedby)
+values(#{equipmentid},#{swnumber},'관리자','관리자')
+</insert>
+
+<insert id="InsertExplorerToEquipSwTable" parameterType="EquipSw.Model.EquipSwBean">
+insert into tb_equipsw(equipmentid,swnumber,createdby,modifiedby)
+values(#{equipmentid},#{explorer},'관리자','관리자')
+</insert>
+
+<insert id="InsertOsToEquipSwTable" parameterType="EquipSw.Model.EquipSwBean">
+insert into tb_equipsw(equipmentid,swnumber,createdby,modifiedby,patch_percent)
+values(#{equipmentid},#{os},'관리자','관리자',#{patch_percent})
+</insert>
+
+<select id="GetRecordEquipmentid" resultType="EquipSw.Model.EquipSwBean" parameterType="String">
+select e.equipmentid,e.swnumber,s.swname,s.swversion 
+	from tb_equipsw e join tb_sw s on e.swnumber=s.swnumber
+		where e.equipmentid=#{equipmentid};
+</select>
+
+<delete id="DeleteSw" parameterType="String">
+delete from tb_equipsw where equipmentid=#{equipmentid}
+</delete>
+
+</mapper>

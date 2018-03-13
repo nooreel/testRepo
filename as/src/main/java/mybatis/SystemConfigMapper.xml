@@ -22,20 +22,15 @@ where d.active=0
 order by a.area_seq asc, o.office_seq asc, d.department_seq asc
 </select>
 <select id="SelectEmployeeList" resultType="SystemConfig.Model.EmployeeBean">
-select a.areaname,o.officename,d.departmentname,employeenumber,birth,employeename,employeeposition 
-from tb_employee e join tb_department d 
-on e.department_seq=d.department_seq
-join tb_office o
-on e.office_seq=o.office_seq
-join tb_area a
-on a.area_seq=o.area_seq
-where e.active=0
+	select a.areaname,o.officename,d.departmentname,employeenumber,birth,employeename,employeeposition 
+	from tb_employee e join tb_department d 
+	on e.department_seq=d.department_seq
+	join tb_office o
+	on e.office_seq=o.office_seq
+	join tb_area a
+	on a.area_seq=o.area_seq
+	where e.active=0
 </select>
-<select id="SelectSwList" resultType="sw.Model.SwBean">
-select * from tb_sw
-</select>
-<select id="GetTotalCountSw" resultType="int">
-select count(*) from tb_sw
-</select>
+
 
 </mapper>

@@ -101,17 +101,17 @@
 </servlet-mapping>
 
 <servlet>
-     <servlet-name>osw</servlet-name>
+     <servlet-name>csw</servlet-name>
      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
      <init-param>
      <param-name>contextConfigLocation</param-name>
-     <param-value>/WEB-INF/spring/appServlet/sw-context.xml</param-value>
+     <param-value>/WEB-INF/spring/appServlet/csw-context.xml</param-value>
      </init-param>
 </servlet>
 
 <servlet-mapping>
-     <servlet-name>osw</servlet-name>
-     <url-pattern>*.osw</url-pattern>
+     <servlet-name>csw</servlet-name>
+     <url-pattern>*.csw</url-pattern>
 </servlet-mapping>
 
 <servlet>
@@ -156,6 +156,78 @@
 </servlet-mapping>
 
 
+<servlet>
+     <servlet-name>stswtb</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/stswtb-context.xml</param-value>
+     </init-param>
+</servlet>
+
+<servlet-mapping>
+     <servlet-name>stswtb</servlet-name>
+     <url-pattern>*.stswtb</url-pattern>
+</servlet-mapping>
+
+
+
+<servlet>
+     <servlet-name>es</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/EquipSwConfig-context.xml</param-value>
+     </init-param>
+</servlet>
+
+<servlet-mapping>
+     <servlet-name>es</servlet-name>
+     <url-pattern>*.es</url-pattern>
+</servlet-mapping>
+
+<servlet>
+     <servlet-name>os</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/os-context.xml</param-value>
+     </init-param>
+</servlet>
+
+<servlet-mapping>
+     <servlet-name>os</servlet-name>
+     <url-pattern>*.os</url-pattern>
+</servlet-mapping>
+
+<servlet>
+     <servlet-name>ni</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/NclientInfo-context.xml</param-value>
+     </init-param>
+</servlet>
+
+<servlet-mapping>
+     <servlet-name>ni</servlet-name>
+     <url-pattern>*.ni</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+     <servlet-name>wp</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/wp-context.xml</param-value>
+     </init-param>
+</servlet>
+
+<servlet-mapping>
+     <servlet-name>wp</servlet-name>
+     <url-pattern>*.wp</url-pattern>
+</servlet-mapping>
 
 
 

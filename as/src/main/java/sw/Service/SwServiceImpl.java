@@ -18,14 +18,13 @@ public class SwServiceImpl implements SwService{
 	}
 
 	@Override
-	public void swUpdate() {
-		// TODO Auto-generated method stub
-		
+	public void swUpdate(SwBean bean) {
+		swdao.swUpdate(bean);
 	}
 
 	@Override
-	public void swDelete() {
-		// TODO Auto-generated method stub
+	public void swDelete(String swnumber) {
+		swdao.swDelete(swnumber);
 		
 	}
 
@@ -34,5 +33,12 @@ public class SwServiceImpl implements SwService{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public SwBean getSwRecord(String swnumber) {
+		SwBean bean=swdao.getSwRecord(swnumber);
+		return bean;
+	}
+	
 	
 }

@@ -6,18 +6,18 @@ public class SwPaging {
 	private int totalCount=0;
 	private int totalPage=0;
 	private int pageNumber=0;
-	private int pageSize=0;
+	private int pageSize=5;
 	private int beginRow=0;
 	private int endRow=0;
 	private int pageCount=3;
 	private int beginPage=0;
 	private int endPage=0;
 	private int offset=0;
-	private int limit=5;
+	private int limit=0;
 	private String url="";
 	private String pagingHtml="";
 	
-	private String columnName="";
+	private String whatColumn="";
 	private String keyword="";
 	
 	
@@ -25,17 +25,19 @@ public class SwPaging {
 	public SwPaging() {
 	}
 
-	public SwPaging(String textpageNumber,int totalCount,int totalPage,String url, String columnName, String keyword) {
-		if(textpageNumber==null) {
+	public SwPaging(String textpageNumber,int totalCount,String url, String whatColumn, String keyword) {
+		if(textpageNumber==null||textpageNumber=="") {
 			textpageNumber="1";
 		}
 		this.pageNumber=Integer.parseInt(textpageNumber);
 		this.offset=(pageNumber-1)*pageSize;
 		
 		this.totalCount=totalCount;
-		this.totalPage=totalPage;
+		this.limit=this.pageSize;
 		
-		this.totalPage=(int)Math.ceil((double)this.totalCount/this.pageSize);
+		
+		
+		this.totalPage=(int)Math.ceil((double)this.totalCount/this.limit);
 		this.beginRow=(this.pageNumber-1)*this.pageSize+1;
 		this.endRow=this.pageNumber*this.pageSize;
 	
@@ -51,22 +53,32 @@ public class SwPaging {
 		
 		
 		this.url = url ; //  /ex/list.ab
-		this.columnName = columnName ;
+		this.whatColumn = whatColumn ;
 		this.keyword = keyword ;
 		
 		this.pagingHtml = getPagingHtml(url) ;
 		
 		
+		
+		System.out.println("totalCount"+this.totalCount);
+		System.out.println("totalPage"+this.totalPage);
+		System.out.println("offset"+this.offset);
+		System.out.println("limit"+this.limit);
+		System.out.println("beginrow"+this.beginRow);
+		System.out.println("endrow"+this.endRow);
+		
 	}
 	
 
 	private String getPagingHtml( String url ){ //페이지를 문자열로 만든다.
-		System.out.println("getPagingHtml url:"+url); 
+		
+		System.out.println("페이징에서의 왓칼럼:"+this.whatColumn);
+		System.out.println("페이징에서의 keyword:"+this.keyword);
 		
 		String result = "" ;
 		
 		//added_param 변수 : 검색 관련하여 추가되는 파라미터 리스트
-		String added_param = "&whatColumn=" + columnName + "&keyword=" + keyword ; 
+		String added_param = "&whatColumn=" + this.whatColumn + "&keyword=" + this.keyword ; 
 		/*/ex/list.ab&whatColumn=singer&keyword=%아%*/
 		
 		if (this.beginPage != 1) { //앞쪽, pageSize:한 화면에 보이는 레코드 수
@@ -90,8 +102,6 @@ public class SwPaging {
 				
 			}
 		}
-		System.out.println("result:"+result); // 가운데 부분
-		System.out.println();
 		
 		if ( this.endPage != this.totalPage) { // 뒤쪽
 			// endPage:지금 보는 페이지의 끝(지금 보는 페이지가 13이라면 endPage는 20), totalPage:전체 페이지수
@@ -212,12 +222,12 @@ public class SwPaging {
 		this.pagingHtml = pagingHtml;
 	}
 
-	public String getColumnName() {
-		return columnName;
+	public String getwhatColumn() {
+		return whatColumn;
 	}
 
-	public void setColumnName(String columnName) {
-		this.columnName = columnName;
+	public void setwhatColumn(String whatColumn) {
+		this.whatColumn = whatColumn;
 	}
 
 	public String getKeyword() {

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+
+
+
+<mapper namespace="CommercialSwMapper">
+
+<select id="cswGetList" resultType="CommercialSw.Model.CommercialSwBean" parameterType="Hashmap">
+select s.maker,s.swname,s.used,s.quantity,
+(select count(*) from tb_equipsw es where es.swnumber=s.swnumber) as 'installquantity', s.quantity-(select count(*) from tb_equipsw es where es.swnumber=s.swnumber) as 부족수량
+from tb_sw s
+Where active=0
+<if test="fixedDate!='null'">
+and date(created)>#{fixedDate}
+</if>
+ORDER BY s.maker;
+
+
+</select>
+
+<select id="cswTotalCount" resultType="int" parameterType="Hashmap">
+select count(*) from (select s.maker,s.swname,s.used,s.quantity,
+(select count(*) from tb_equipsw es where es.swnumber=s.swnumber), 
+s.quantity-(select count(*) from tb_equipsw es where es.swnumber=s.swnumber)
+from tb_sw s
+Where active=0
+<if test="fixedDate!='null'">
+and date(created)>#{fixedDate}
+</if>
+) ssss
+</select>
+
+
+
+</mapper>

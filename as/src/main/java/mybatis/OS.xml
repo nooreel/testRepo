@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="OsMapper">
+
+<select id="SelectOsList" resultType="os.Model.OsBean" parameterType="Hashmap">
+select s.swnumber,s.swname,
+(select count(*) from tb_equipsw es 
+join tb_equipment e on es.equipmentid=e.equipmentid where e.assetYN=0 and es.swnumber=s.swnumber) as 'assetcount',
+(select count(*) from tb_equipsw es 
+join tb_equipment e on es.equipmentid=e.equipmentid where e.assetYN=0 and es.swnumber=s.swnumber and e.equipmenttype='pc') as 'assetcountpc',
+(select count(*) from tb_equipsw es 
+join tb_equipment e on es.equipmentid=e.equipmentid where e.assetYN=1 and es.swnumber=s.swnumber) as 'notassetcount',
+(select count(*) from tb_equipsw es 
+join tb_equipment e on es.equipmentid=e.equipmentid where e.assetYN=1 and es.swnumber=s.swnumber and e.equipmenttype='pc') as 'notassetcountpc'
+from tb_sw s
+where swtype='OS' and active=0
+<if test="fixedDate!='null'">
+and date(created)>#{fixedDate}
+</if>
+</select>
+
+<select id="GetOsTotalCount" parameterType="Hashmap" resultType="int">
+select count(*)
+from (select s.swnumber,s.swname,
+(select count(*) from tb_equipsw es 
+join tb_equipment e on es.equipmentid=e.equipmentid where e.assetYN=0 and es.swnumber=s.swnumber) as 'assetcount',
+(select count(*) from tb_equipsw es 
+join tb_equipment e on es.equipmentid=e.equipmentid where e.assetYN=0 and es.swnumber=s.swnumber and e.equipmenttype='pc') as 'assetcountpc',
+(select count(*) from tb_equipsw es 
+join tb_equipment e on es.equipmentid=e.equipmentid where e.assetYN=1 and es.swnumber=s.swnumber) as 'notassetcount',
+(select count(*) from tb_equipsw es 
+join tb_equipment e on es.equipmentid=e.equipmentid where e.assetYN=1 and es.swnumber=s.swnumber and e.equipmenttype='pc') as 'notassetcountpc'
+from tb_sw s
+where swtype='OS' and active=0
+<if test="fixedDate!='null'">
+and date(created)>#{fixedDate}
+</if>
+) totalcount
+</select>
+
+<select id="SelectOsDetailList" resultType="os.Model.OsDetailBean" parameterType="Hashmap">
+select es.swnumber,s.swname,a.areaname,o.officename,d.departmentname,em.employeename,e.equipmenttype,es.equipmentid
+from tb_equipsw es 
+left join tb_sw s on es.swnumber=s.swnumber
+join tb_equipment e on es.equipmentid=e.equipmentid
+join tb_employee em on e.employeenumber=em.employeenumber
+join tb_department d on em.department_seq=d.department_seq
+join tb_office o on d.office_seq=o.office_seq
+join tb_area a on o.area_seq=a.area_seq
+where es.swnumber=#{swnumber}
+</select>
+
+<select id="GetDetailTotalCount" resultType="int" parameterType="Hashmap">
+select count(*) 
+from (select es.swnumber,s.swname,a.areaname,o.officename,d.departmentname,em.employeename,e.equipmenttype,es.equipmentid
+from tb_equipsw es 
+left join tb_sw s on es.swnumber=s.swnumber
+join tb_equipment e on es.equipmentid=e.equipmentid
+join tb_employee em on e.employeenumber=em.employeenumber
+join tb_department d on em.department_seq=d.department_seq
+join tb_office o on d.office_seq=o.office_seq
+join tb_area a on o.area_seq=a.area_seq
+where es.swnumber=#{swnumber}) cnt
+</select>
+
+
+
+</mapper>
