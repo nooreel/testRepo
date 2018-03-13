@@ -7,4 +7,5 @@ public interface EquipmentService {
 	public abstract EquipmentBean EqupimentSelect(String equipmentid);
 	public abstract void EquipmentUpdate(EquipmentBean bean);
 	public abstract void EquipmentDelete(String equipmentid);
+	public abstract String equipmentIdCheck(String equipmentid);
 }

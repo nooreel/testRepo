@@ -18,12 +18,12 @@ public class SwAllVersionPaging {
 	private String whatColumn="";
 	private String keyword="";
 	private String swDate="";
-	
+	private String swname="";
 	
 	public SwAllVersionPaging() {
 	}
 
-	public SwAllVersionPaging(String textpageNumber,int totalCount,String url, String swDate) {
+	public SwAllVersionPaging(String textpageNumber,int totalCount,String url, String swDate,String swname) {
 		if(textpageNumber==null||textpageNumber=="") {
 			textpageNumber="1";
 		}
@@ -34,7 +34,7 @@ public class SwAllVersionPaging {
 		this.limit=this.pageSize;
 		
 		this.swDate=swDate;
-		
+		this.swname=swname;
 		
 		this.totalPage=(int)Math.ceil((double)this.totalCount/this.limit);
 		this.beginRow=(this.pageNumber-1)*this.pageSize+1;
@@ -55,14 +55,6 @@ public class SwAllVersionPaging {
 		
 		this.pagingHtml = getPagingHtml(url) ;
 		
-		
-		
-		System.out.println("totalCount"+this.totalCount);
-		System.out.println("totalPage"+this.totalPage);
-		System.out.println("offset"+this.offset);
-		System.out.println("limit"+this.limit);
-		System.out.println("beginrow"+this.beginRow);
-		System.out.println("endrow"+this.endRow);
 		
 	}
 	
@@ -92,32 +84,28 @@ public class SwAllVersionPaging {
 			nextpage=this.getPageNumber()+1;
 		}
 		
-		
+
 		//폼 시작
 		String f0="<form action='"+this.getUrl()+"' action='get' id='f2'>";
 		
 		//<< 버튼 (1페이지로 가기)
-		String f1="<a href='"+this.getUrl()+"?pageNumber=1&swDate="+this.swDate+"'>"+
-				"<i class='fa fa-angle-double-left'></i>&nbsp&nbsp"+"</a>";
+		String f1="<i class='fa fa-angle-double-left' onclick=\"javascript:ftest2('"+this.swname+"','1')\"></i>&nbsp&nbsp";
 		
 		//< 버튼 (페이지 -1)
-		String f6="<a href='"+this.getUrl()+"?pageNumber="+beforepage+"&swDate="+this.swDate+"'>"
-				+"<i class='fa fa-angle-left'></i>&nbsp&nbsp</a>";
+		String f6="<i class='fa fa-angle-left' onclick=\"javascript:ftest2('"+this.swname+"','"+beforepage+"')\"></i>&nbsp&nbsp";
 		
 		//현재 페이지 인풋
-		String f2="page &nbsp&nbsp<input type='number' name='pageNumber' value='"
-		+this.getPageNumber()+"' style='width:30px;' onchange='getRecordByPageNumber()'>";
+		String f2="page &nbsp&nbsp<input type='number' name='pageNumber2' value='"
+		+this.getPageNumber()+"' style='width:30px;' onchange=\"getRecordByPageNumber('"+this.swname+"')\">";
 		
 		//토탈 페이지
 		String f3=" &nbsp&nbsp of &nbsp&nbsp "+this.getEndPage();
 		
 		//>> 버튼 (마지막 페이지)
-		String f4="<a href='"+this.getUrl()+"?pageNumber="+this.getEndPage()+"&swDate="+this.swDate+"'>"+
-		"&nbsp&nbsp<i class='fa fa-angle-double-right'></i></a>";
+		String f4="&nbsp&nbsp<i class='fa fa-angle-double-right' onclick=\"ftest2('"+this.swname+"','"+this.endPage+"')\"></i>";
 		
 		// > 버튼 (페이지 +1)
-		String f7="<a href='"+this.getUrl()+"?pageNumber="+nextpage+"&swDate="+this.swDate+"'>"
-				+"&nbsp&nbsp<i class='fa fa-angle-right'></i></a>";
+		String f7="&nbsp&nbsp<i class='fa fa-angle-right' onclick=\"ftest2('"+this.swname+"','"+nextpage+"')\"></i>";
 		
 		//히든데이터(swDate)
 		String f10="<input type='hidden' name='swDate' value='"+this.swDate+"'>";

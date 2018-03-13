@@ -56,7 +56,7 @@ function ftest(swname){
 							<td>설치</td>
 							<td>율</td>
 						</tr>
-					<c:forEach var="s" items="${swlist}">
+		`			<c:forEach var="s" items="${swlist}">
 						<tr onclick="javascript:ftest('${s.swname}')">
 						<td>${s.swname}</td>
 						<td>${s.assetdaesang}</td>

@@ -24,5 +24,8 @@ update tb_equipment set equipmenttype=#{equipmenttype}, equipmentip=#{equipmenti
 where equipmentid like #{equipmentid}
 </update>
 
+<select id="EquipmentIdCheck" resultType="int">
+select count(*) from tb_equipment where equipmentid like #{equipmentid}
+</select>
 
 </mapper>

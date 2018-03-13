@@ -36,7 +36,7 @@ public class SwAllVersionViewController {
 		
 		int totalCount=stswtbservice.getTotalCountFromSwAllVersion(map);
 		
-		SwAllVersionPaging paging=new SwAllVersionPaging(textpageNumber, totalCount, "GetSwAllVersion.stswtb", null);
+		SwAllVersionPaging paging=new SwAllVersionPaging(textpageNumber, totalCount, "GetSwAllVersion.stswtb", null, swname);
 		
 		List<SwVersionManagementBean> swalist=stswtbservice.getSwAllVersion(paging,map);
 		

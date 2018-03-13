@@ -38,6 +38,12 @@ public class EquipmentServiceImpl implements EquipmentService{
 		
 	}
 
+	@Override
+	public String equipmentIdCheck(String equipmentid) {
+		String result = equipmentdao.equipmentCheck(equipmentid);
+		return result;
+	}
+
 
 
 }

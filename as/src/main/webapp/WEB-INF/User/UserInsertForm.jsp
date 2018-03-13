@@ -46,7 +46,7 @@ function employeeNumberCheck(){
 				chkresult=true;
 			}else{
 				chkresult=false;
-				chktes=false;
+				chkyes=false;
 			}
 			
 		}

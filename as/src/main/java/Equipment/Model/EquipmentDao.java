@@ -31,4 +31,20 @@ public class EquipmentDao {
 	public void equipmentDelete(String equipmentid) {
 		sqlsessiontemplate.delete(namespace+".EquipmentDelete", equipmentid);
 	}
+	
+	public String equipmentCheck(String equipmentid) {
+		int chk = 0;
+		String result="";
+		chk = sqlsessiontemplate.selectOne(namespace+".EquipmentIdCheck", equipmentid);
+		if(chk==1) {
+			result="이미 등록된 아이디 입니다.";
+			
+		}else {
+			
+			result ="사용 가능한 아이디 입니다.";
+			
+		}
+		
+		return result;
+	}
 }

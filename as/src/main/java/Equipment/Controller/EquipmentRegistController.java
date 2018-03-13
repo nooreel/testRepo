@@ -3,6 +3,7 @@ package Equipment.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +21,25 @@ public class EquipmentRegistController {
 	@Autowired
 	EquipmentService equipmentservice;
 	
+	
+	@RequestMapping(value="equipmentIdCheck.eq")
+	public void equipmentIdCheck(
+			HttpServletRequest request
+			,HttpServletResponse response) {
+		response.setContentType("text/html;charset=UTF-8");
+		String equipmentid = request.getParameter("equipmentid");
+		String result = equipmentservice.equipmentIdCheck(equipmentid);
+		System.out.println("장비 중복검사 result" + result);
+		try {
+			PrintWriter out = response.getWriter();
+			out.print(result);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
 	
 	@RequestMapping(value="EquipmentRegist.eq",method=RequestMethod.GET)
