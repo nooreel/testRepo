@@ -14,4 +14,5 @@ public interface NclientInfoService {
 	public List<NclientInfoByAreaBean> getNClientInfoByArea(NClientInfoPaging paging,Map<String,String> map);
 	public int getAreaToDepartmentTotalCount(String area_seq);
 	public List<NclientInfoByAreaToDepartmentBean> getAreaToDepartmentList(NClientInfoByAreaPaging paging,String area_seq);
+	public List<NclientInfoByAreaBean> exceltest();
 }

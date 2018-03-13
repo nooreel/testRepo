@@ -43,4 +43,9 @@ public class NclientDao {
 		return list;
 	}
 	
+	public List<NclientInfoByAreaBean> exceltest(){
+		List<NclientInfoByAreaBean> list=sqlsessiontemplate.selectList(namespace+".exceltest");
+		return list;
+	}
+	
 }

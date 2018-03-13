@@ -26,6 +26,7 @@
 						
 					</div>
 					<div class="panel panel-body">
+						<a href="excelDownload.ni">엑셀</a>
 						<table class="table table-bordered">
 							<tr>
 								<td rowspan=2>권역</td>

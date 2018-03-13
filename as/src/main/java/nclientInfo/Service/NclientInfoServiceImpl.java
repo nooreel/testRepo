@@ -44,4 +44,10 @@ public class NclientInfoServiceImpl implements NclientInfoService{
 		return list;
 	}
 
+	@Override
+	public List<NclientInfoByAreaBean> exceltest() {
+		List<NclientInfoByAreaBean> list=nclientdao.exceltest();
+		return list;
+	}
+
 }

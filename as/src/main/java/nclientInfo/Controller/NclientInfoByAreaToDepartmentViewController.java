@@ -25,7 +25,7 @@ public class NclientInfoByAreaToDepartmentViewController {
 	@Autowired
 	NclientInfoService nclientinfoservice;
 	
-	@RequestMapping("NclientInfoByAreaToDepartment")
+/*	@RequestMapping("NclientInfoByAreaToDepartment")
 	public void getNclientInfoByAreaToDepartment(
 			@RequestParam(value="area_seq",required=false) String area_seq,
 			@RequestParam(value="pageNumber",required=false) String textpageNumber,
@@ -111,7 +111,7 @@ public class NclientInfoByAreaToDepartmentViewController {
 			e.printStackTrace();
 		}
 		
-	}
+	}*/
 	
 	@ResponseBody
 	@RequestMapping("NclientInfoJson.ni")
