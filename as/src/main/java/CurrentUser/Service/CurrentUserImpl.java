@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import CurrentUser.Model.CurrentUserBean;
 import CurrentUser.Model.CurrentUserDao;
+import Paging.NClientInfoByAreaPaging;
 import Paging.SwVersionManagementPaging;
 
 @Service
@@ -38,6 +39,23 @@ public class CurrentUserImpl implements CurrentUserService{
 		int totalCount =
 				cusDao.getTotalCount(map);
 		return totalCount;
+	}
+
+
+
+	@Override
+	public int getDetailTotalCount(int department_seq) {
+		int totalCount 
+		=cusDao.getDetailTotalCount(department_seq);
+		return totalCount;
+	}
+
+
+
+	@Override
+	public List<CurrentUserBean> CurrentUserDetailList(int department_seq, NClientInfoByAreaPaging paging) {
+		List<CurrentUserBean> detailList =  cusDao.CurrentUserDetailList(department_seq, paging);
+		return detailList;
 	}
 
 
