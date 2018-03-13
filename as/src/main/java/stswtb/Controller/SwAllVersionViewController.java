@@ -69,10 +69,14 @@ public class SwAllVersionViewController {
 			out.println("<td>"+swalist.get(i).getSwversion()+"</td>");
 			out.println("<td>"+swalist.get(i).getAssetsetupcount()+"</td>");
 			double doubleassetsetupcount=swalist.get(i).getAssetsetupcount();
-			out.println("<td>"+doubleassetsetupcount/swalist.get(i).getAssetdaesang()*100+"%</td>");
+			out.println("<td>"+
+					String.format("%.2f", doubleassetsetupcount/swalist.get(i).getAssetdaesang()*100)
+					+"%</td>");
 			out.println("<td>"+swalist.get(i).getNotassetsetupcount()+"</td>");
 			double doublenotassetsetupcount=swalist.get(i).getNotassetsetupcount();
-			out.println("<td>"+doublenotassetsetupcount/swalist.get(i).getNotassetdaesang()*100+"%</td>");
+			out.println("<td>"+
+			String.format("%.2f", doublenotassetsetupcount/swalist.get(i).getNotassetdaesang()*100)
+					+"%</td>");
 			out.println("</tr>");
 			
 		}

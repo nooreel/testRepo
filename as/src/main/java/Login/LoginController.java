@@ -38,10 +38,7 @@ public class LoginController {
 		ModelAndView mav=new ModelAndView();
 		if(result == true){
 			mav.setViewName("../testt/index");
-			session.setAttribute("userId", id);
-			session.setAttribute("userPw", pw);
-			System.out.println("로그인 성공");
-			System.out.println("로그인아이디"+session.getAttribute("userId"));
+
 		}else{
 			mav.setViewName("login");
 			mav.addObject("msg","failure");

@@ -2,7 +2,9 @@ package nclientInfo.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import Paging.NClientInfoByAreaPaging;
 import nclientInfo.Model.NclientInfoByAreaBean;
@@ -75,7 +78,7 @@ public class NclientInfoByAreaToDepartmentViewController {
 						if(Double.isNaN(assetresult)) {
 							assetresult=0;
 						}
-					out.println("<td>"+assetresult+"%</td>");
+					out.println("<td>"+String.format("%.2f", assetresult)+"%</td>");
 					
 					out.println("<td>"+ablist.get(i).getNotassetcount()+"</td>");
 						out.println("<td>"+ablist.get(i).getNotassetrecevingcount()+"</td>");
@@ -84,7 +87,7 @@ public class NclientInfoByAreaToDepartmentViewController {
 						if(Double.isNaN(notassetresult)) {
 							notassetresult=0;
 						}
-					out.println("<td>"+notassetresult+"%</td>");
+					out.println("<td>"+String.format("%.2f", notassetresult)+"%</td>");
 					
 					out.println("<td>"+(ablist.get(i).getAssetcount()+ablist.get(i).getNotassetcount())+"</td>");
 					out.println("<td>"+(ablist.get(i).getAssetrecevingcount()+ablist.get(i).getNotassetrecevingcount())+"</td>");
@@ -94,7 +97,7 @@ public class NclientInfoByAreaToDepartmentViewController {
 						if(Double.isNaN(sumresult)) {
 							sumresult=0;
 						}
-					out.println("<td>"+sumresult+"%</td>");
+					out.println("<td>"+String.format("%.2f", sumresult)+"%</td>");
 					out.println("</tr>");
 			}
 			out.println("<tr>");
@@ -109,4 +112,24 @@ public class NclientInfoByAreaToDepartmentViewController {
 		}
 		
 	}
+	
+	@ResponseBody
+	@RequestMapping("NclientInfoJson.ni")
+	public Map<String, Object> jsontest(
+			@RequestParam(value="area_seq",required=false) String area_seq,
+			@RequestParam(value="pageNumber",required=false) String textpageNumber){
+		System.out.println("¿©±âµé¾î¿È");
+		int totalCount=nclientinfoservice.getAreaToDepartmentTotalCount(area_seq);
+		
+		NClientInfoByAreaPaging paging=new NClientInfoByAreaPaging(textpageNumber, totalCount, "NclientInfoByAreaToDepartment", null, area_seq);
+		
+		List<NclientInfoByAreaToDepartmentBean> ablist=nclientinfoservice.getAreaToDepartmentList(paging,area_seq);
+		
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("ablist", ablist);
+		map.put("paging", paging);
+		
+		return map;
+	}
+	
 }
