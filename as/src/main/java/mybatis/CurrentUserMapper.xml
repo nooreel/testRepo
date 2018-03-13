@@ -3,7 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CurrentUserMapper">
 <select id="userList" resultType="CurrentUser.Model.CurrentUserBean">
-select  a.areaname, o.officename, d.departmentname,
+select ifnull(d.department_seq,0) as 'department_seq', a.areaname, o.officename, d.departmentname,
 
 (select count(*) from tb_equipment e join tb_employee em on e.employeenumber=em.employeenumber
 where e.assetYN=0 and em.department_seq=d.department_seq) as 'assetdaesang',
@@ -18,7 +18,7 @@ where e.assetYN=1 and em.department_seq=d.department_seq) as 'noassetdaesang',
 where e.nclientsetup=0 and e.assetYN=1 and em.department_seq=d.department_seq) as 'noassetreceive'
 from tb_area a 
 left join tb_office o on o.area_seq=a.area_seq
-left join tb_department d on o.office_seq=d.office_seq 
+left join tb_department d on o.office_seq=d.office_seq
 where a.active=0
 <if test="swDate!='null'">
 and date(a.created)>#{swDate}
@@ -60,5 +60,28 @@ and a.areaname=#{areaname}
 
 <select id="areaList" resultType="CurrentUser.Model.CurrentUserBean">
 select areaname from tb_area where active=0
+</select>
+
+<select id="detailList" resultType="CurrentUser.Model.CurrentUserBean">
+select a.areaname,o.officename,d.departmentname,em.employeename,eq.equipmentid,eq.created,eq.nclientsetup,eq.assetYN
+from tb_equipment eq
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_department d on em.department_seq=d.department_seq
+join tb_office o on em.office_seq=o.office_seq
+join tb_area a on em.area_seq=a.area_seq
+where em.department_seq=#{department_seq}
+;
+
+</select>
+
+<select id="detailCount" resultType="int">
+select count(*) from (
+select a.areaname,o.officename,d.departmentname,em.employeename,eq.equipmentid,eq.created,eq.nclientsetup,eq.assetYN
+from tb_equipment eq
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_department d on em.department_seq=d.department_seq
+join tb_office o on em.office_seq=o.office_seq
+join tb_area a on em.area_seq=a.area_seq
+where em.department_seq=#{department_seq}) ee
 </select>
 </mapper>

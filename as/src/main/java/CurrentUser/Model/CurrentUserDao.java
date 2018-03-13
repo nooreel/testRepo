@@ -1,6 +1,5 @@
 package CurrentUser.Model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import Paging.NClientInfoByAreaPaging;
 import Paging.SwVersionManagementPaging;
 
 @Component
@@ -43,4 +43,25 @@ public class CurrentUserDao {
 		return totalcount;
 		
 	}
+	
+	public List<CurrentUserBean> CurrentUserDetailList(int department_seq, NClientInfoByAreaPaging paging){
+		
+		RowBounds rowbounds = new RowBounds(paging.getOffset(),paging.getLimit());
+		
+		List<CurrentUserBean> areaList
+		=sqlsessionTemplate.selectList(namespace +".detailList",department_seq, rowbounds);
+		return areaList;
+	}
+
+	
+	public int getDetailTotalCount(int department_seq) {
+		int totalcount =0;
+		totalcount =
+				sqlsessionTemplate.selectOne(namespace+".detailCount", department_seq);
+
+		return totalcount;
+		
+	}
+	
+	
 }

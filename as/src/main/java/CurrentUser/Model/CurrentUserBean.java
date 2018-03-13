@@ -3,15 +3,58 @@ package CurrentUser.Model;
 public class CurrentUserBean {
 
 	public String areaname;
+	public int department_seq;
 	public String departmentname;
 	public String officename;
 	public String assetdaesang;
 	public String assetreceive;
 	public String noassetdaesang;
 	public String noassetreceive;
+	public String employeename;
+	public String equipmentid;
+	public String created;
+	public int nclientsetup;
+	public int assetYN;
 	
 	
 	
+	
+	public String getEmployeename() {
+		return employeename;
+	}
+	public void setEmployeename(String employeename) {
+		this.employeename = employeename;
+	}
+	public String getEquipmentid() {
+		return equipmentid;
+	}
+	public void setEquipmentid(String equipmentid) {
+		this.equipmentid = equipmentid;
+	}
+	public String getCreated() {
+		return created;
+	}
+	public void setCreated(String created) {
+		this.created = created;
+	}
+	public int getNclientsetup() {
+		return nclientsetup;
+	}
+	public void setNclientsetup(int nclientsetup) {
+		this.nclientsetup = nclientsetup;
+	}
+	public int getAssetYN() {
+		return assetYN;
+	}
+	public void setAssetYN(int assetYN) {
+		this.assetYN = assetYN;
+	}
+	public int getDepartment_seq() {
+		return department_seq;
+	}
+	public void setDepartment_seq(int department_seq) {
+		this.department_seq = department_seq;
+	}
 	public String getOfficename() {
 		return officename;
 	}
