@@ -41,12 +41,36 @@
 <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<!-- d3 -->
+	<script type="text/javascript" src="http://d3js.org/d3.v3.min.js" defer></script>
+	<script type="text/javascript" src="resources/vendor/liquidFillGauge.js" defer></script>
 
+<style>
+
+circle {
+  fill: rgb(31, 119, 180);
+  fill-opacity: .25;
+  stroke: rgb(31, 119, 180);
+  stroke-width: 1px;
+}
+
+.leaf circle {
+  fill: #ff7f0e;
+  fill-opacity: 1;
+}
+
+text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+ .liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
+
+</style>
 
 </head>
 
 <body>
-
     <div id="wrapper">
 
         <!-- Navigation -->

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="MainPageMapper">
+
+<select id="NclientSetupInfoByAsset" resultType="testt.Model.NclientAssetBean">
+select 
+	(select count(*) from tb_equipment where assetyn=0) as 'countentire',
+	(select count(*) from tb_equipment where assetyn=0 and nclientsetup=0) as 'coutnentiresetup',
+	(select count(*) from tb_equipment where assetyn=0 and equipmenttype='PC') as 'countpc',
+	(select count(*) from tb_equipment where assetyn=0 and nclientsetup=0 and equipmenttype='PC') as 'countpcsetup', 
+	(select count(*) from tb_equipment where assetyn=0 and equipmenttype='노트북') as 'countnotebook',
+	(select count(*) from tb_equipment where assetyn=0 and nclientsetup=0 and equipmenttype='노트북' )as 'countnotebooksetup'
+</select>
+
+<select id="NclientSetupInfoByNotAsset" resultType="testt.Model.NclientAssetBean">
+select 
+	(select count(*) from tb_equipment where assetyn=1) as 'countentire',
+	(select count(*) from tb_equipment where assetyn=1 and nclientsetup=0) as 'coutnentiresetup',
+	(select count(*) from tb_equipment where assetyn=1 and equipmenttype='PC') as 'countpc',
+	(select count(*) from tb_equipment where assetyn=1 and nclientsetup=0 and equipmenttype='PC') as 'countpcsetup', 
+	(select count(*) from tb_equipment where assetyn=1 and equipmenttype='노트북') as 'countnotebook',
+	(select count(*) from tb_equipment where assetyn=1 and nclientsetup=0 and equipmenttype='노트북' )as 'countnotebooksetup'
+</select>
+
+<select id="MakerSwList" resultType="testt.Model.MakerSwChartBean">
+select maker,
+	 	(select sum(quantity) from tb_sw where maker=s.maker) as 'quantity',
+	 	(select count(*) from tb_sw sw join tb_equipsw es on sw.swnumber=es.swnumber where sw.maker=s.maker) as 'setup'
+		from tb_sw s group by maker order by 2 desc limit 5
+</select>
+
+</mapper>

@@ -96,7 +96,6 @@
 						NetClient 조직별 정보 현황
 					</div>
 					<div class="panel panel-body" id="departmentDiv">
-					
 					</div>
 				</div>
 			</div>
