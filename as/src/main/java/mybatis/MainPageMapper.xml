@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MainPageMapper">
+	<select id="oslist" resultType="osmainBean">
+		select s.swname as 'OsName',
+		count(*) as 'OsCount' from(
+		tb_sw s
+		join tb_equipsw e
+		on s.swnumber =
+		e.swnumber
+		) where e.active=0 and s.swtype='os' group by s.swname
+	</select>
+
+
+	<select id="windowspatch" resultType="osmainBean">
+		select
+		(select count(*) as
+		'patchend' from(
+		tb_sw s join tb_equipsw e on s.swnumber = e.swnumber
+		)
+		where e.active=0 and s.swtype='os' and s.swname like '%windows%' and
+		e.patch_percent=100) as 'patchend',
+		(select count(*) as 'patchend'
+		from(
+		tb_sw s join tb_equipsw e on s.swnumber = e.swnumber
+		) where
+		e.active=0 and s.swtype='os' and s.swname like '%windows%') as
+		'patchall' from tb_sw group by 'patchend'
+	</select>
+
+	<select id="swdistribute" resultType="osmainBean">
+		select s.swname as 'swname', (select count(*) from tb_equipment) as
+		'daesangcount'
+		,count(s.swname ) as 'setupcount' from
+		(tb_sw s join tb_equipsw e
+		on e.swnumber=s.swnumber
+		) where s.swtype='표준sw' group by s.swname;
+
+
+	</select>
+
+</mapper>
+	
+	

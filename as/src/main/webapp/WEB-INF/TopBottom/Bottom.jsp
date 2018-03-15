@@ -23,7 +23,18 @@
     <script src="resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <!-- Flot Charts JavaScript -->
+    <script src="resources/vendor/flot/excanvas.min.js"></script>
+    <script src="resources/vendor/flot/jquery.flot.js"></script>
+    <script src="resources/vendor/flot/jquery.flot.pie.js"></script>
+    <script src="resources/vendor/flot/jquery.flot.resize.js"></script>
+    <script src="resources/vendor/flot/jquery.flot.time.js"></script>
+    <script src="resources/vendor/flot-tooltip/jquery.flot.tooltip.min.js"></script>
+    <script src="resources/data/flot-data.js"></script>
     
+       <script src="resources/vendor/flot/cate.js"></script>
+    <script src="resources/vendor/flot/axislabel.js"></script>
+   <script src="resources/vendor/flot/orderbar.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="resources/dist/js/sb-admin-2.js"></script>

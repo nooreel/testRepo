@@ -1091,7 +1091,7 @@ $(function() {
 
         });
     }
-
+SAL
     doPlot("right");
 
     $("button").click(function() {
