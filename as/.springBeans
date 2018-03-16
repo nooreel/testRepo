@@ -19,6 +19,11 @@
 		<config>src/main/webapp/WEB-INF/spring/appServlet/os-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/wp-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/NclientInfo-context.xml</config>
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/master
+=======
+		<config>src/main/webapp/WEB-INF/spring/appServlet/exp-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/currentUser-context.xml</config>
 >>>>>>> refs/remotes/origin/master
 	</configs>
 	<autoconfigs>

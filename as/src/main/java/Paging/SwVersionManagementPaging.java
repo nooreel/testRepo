@@ -67,7 +67,52 @@ public class SwVersionManagementPaging {
    }
    
 
-   private String getPagingHtml( String url ){ //페이지를 문자열로 만든다.
+   public SwVersionManagementPaging(String textpageNumber, int totalCount, String url) {
+	   
+	   if(textpageNumber==null||textpageNumber=="") {
+	         textpageNumber="1";
+	      }
+	      this.pageNumber=Integer.parseInt(textpageNumber);
+	      this.offset=(pageNumber-1)*pageSize;
+	      
+	      this.totalCount=totalCount;
+	      this.limit=this.pageSize;
+	      
+	      
+	      this.totalPage=(int)Math.ceil((double)this.totalCount/this.limit);
+	      this.beginRow=(this.pageNumber-1)*this.pageSize+1;
+	      this.endRow=this.pageNumber*this.pageSize;
+	   
+	      if( this.endRow > this.totalCount ){
+	         this.endRow = this.totalCount  ;
+	      }
+	      
+	      this.beginPage = ( this.pageNumber - 1 ) / this.pageCount * this.pageCount + 1  ;
+	      this.endPage = this.beginPage + this.pageCount - 1 ;
+	      if( this.endPage > this.totalPage ){
+	         this.endPage = this.totalPage ;
+	      }
+	      
+	      
+	      this.url = url ; //  /ex/list.ab
+	      
+	      this.pagingHtml = getPagingHtml(url) ;
+	      
+	      
+	      
+	      System.out.println("totalCount"+this.totalCount);
+	      System.out.println("totalPage"+this.totalPage);
+	      System.out.println("offset"+this.offset);
+	      System.out.println("limit"+this.limit);
+	      System.out.println("beginrow"+this.beginRow);
+	      System.out.println("endrow"+this.endRow);
+	      
+	   
+	   
+	   
+}
+
+private String getPagingHtml( String url ){ //페이지를 문자열로 만든다.
       
       String result = "" ;
       

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import CommercialSw.Model.CommercialSwBean;
 import CommercialSw.Model.CommercialSwDao;
+import CommercialSw.Model.CommercialSwDetailBean;
+import Paging.CommercialSwDetailPaging;
 import Paging.CommercialSwPaging;
 import Paging.OsPaging;
 
@@ -31,4 +33,16 @@ public class CommercialSwService {
 		
 		return totalCount;
 	}
+	
+	public List<CommercialSwDetailBean> cswGetDetailList(CommercialSwDetailPaging paging,String swname){
+		List<CommercialSwDetailBean> cswlist=commercialSwDao.cswGetDetailListDao(paging, swname);
+		System.out.println("cswdetail 서비스");
+		return cswlist;	
+	}
+	public int cswGetDetailTotal(String swname) {
+			int totalCount=commercialSwDao.cswGetDetailTotalDao(swname);
+			System.out.println("cswdetailtotal 서비스"+totalCount);
+		return totalCount;
+	}
+	
 }

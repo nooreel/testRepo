@@ -76,10 +76,14 @@ function ftest2(swname,pageNumber){
 						<td>${s.swname}</td>
 						<td>${s.assetdaesang}</td>
 						<td>${s.assetsetupcount}</td>
-						<td>${s.assetsetupcount/s.assetdaesang*100 }%</td>
+						<td>
+						<fmt:formatNumber value="${s.assetsetupcount/s.assetdaesang*100 }" pattern=".00" />
+						%</td>
 						<td>${s.notassetdaesang}</td>
 						<td>${s.notassetsetupcount}</td>
-						<td>${s.notassetsetupcount/s.notassetdaesang*100 }%</td>
+						<td>
+						<fmt:formatNumber value="${s.notassetsetupcount/s.notassetdaesang*100 }" pattern=".00" />
+						%</td>
 						</tr>
 					</c:forEach>
 						<tr>

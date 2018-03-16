@@ -8,7 +8,7 @@
 <mapper namespace="CommercialSwMapper">
 
 <select id="cswGetList" resultType="CommercialSw.Model.CommercialSwBean" parameterType="Hashmap">
-select s.maker,s.swname,s.used,s.quantity,
+select s.swnumber,s.maker,s.swname,s.used,s.quantity,
 (select count(*) from tb_equipsw es where es.swnumber=s.swnumber) as 'installquantity', s.quantity-(select count(*) from tb_equipsw es where es.swnumber=s.swnumber) as 부족수량
 from tb_sw s
 Where active=0
@@ -32,6 +32,32 @@ and date(created)>#{fixedDate}
 ) ssss
 </select>
 
+<select id="cswDetailList" resultType="CommercialSw.Model.CommercialSwDetailBean" parameterType="String">
+select a.areaname,o.officename,d.departmentname,em.employeenumber,em.employeename,em.employeeposition,s.created,eq.equipmentid,eq.equipmentip
+from tb_sw s
+join tb_equipsw es on s.swnumber=es.swnumber
+join tb_equipment eq on es.equipmentid=eq.equipmentid
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_department d on em.department_seq=d.department_seq
+join tb_office o on em.office_seq=o.office_seq
+join tb_area a on em.area_seq=a.area_seq
+where s.swnumber=#{swname}
+ORDER BY d.department_seq,em.employeename;
+</select>
+
+<select id="cswDetailTotal" resultType="int" parameterType="String">
+select count(*) from
+(select a.areaname,o.officename,d.departmentname,em.employeenumber,em.employeename,em.employeeposition,s.created,eq.equipmentid,eq.equipmentip
+from tb_sw s
+join tb_equipsw es on s.swnumber=es.swnumber
+join tb_equipment eq on es.equipmentid=eq.equipmentid
+join tb_employee em on eq.employeenumber=em.employeenumber
+join tb_department d on em.department_seq=d.department_seq
+join tb_office o on em.office_seq=o.office_seq
+join tb_area a on em.area_seq=a.area_seq
+where s.swnumber=#{swname}
+ORDER BY d.department_seq,em.employeename) detailtotal;
+</select>
 
 
 </mapper>

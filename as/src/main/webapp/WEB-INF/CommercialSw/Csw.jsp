@@ -36,10 +36,9 @@
 						</tr>
 					<c:forEach var="csw" items="${cswlist}">
 					
-					<tr>
+					<tr onclick="ftest('${csw.swnumber}')">
 					
-						<td><a href="cswlist.csw?fixedDate=${fixedDate}&pageNumber=${pageNumber}">
-						${csw.maker}</a></td>
+						<td>${csw.maker}</td>
 						<td>${csw.swname}</td>
 						<td>${csw.used}</td>
 						<td>${csw.quantity}</td>
@@ -65,52 +64,193 @@
 		<div class="col-lg-12">
 			<div class="panel panel-red">
 				<div class="panel panel-heading">
-					상용 소프트웨어 사용내역
-					
+					상용 소프트웨어 사용내역	
 				</div>
-				<div class="panel panel-body">
-					<table class="table table-borderd">
-					<c:if test="${osdetaillist==null }">
-						<tr>
-							<td>OS설치현황 테이블에서 OS를 선택해주세요</td>
-						</tr>
-					</c:if>
-					<c:if test="${osdetaillist!=null }">
-						<tr>
-							<td>기관명</td>
-							<td>조직경로명</td>
-							<td>사번</td>
-							<td>사용자</td>
-							<td>직위</td>
-							<td>설치일자</td>
-							<td>장비ID</td>
-							<td>로컬IP</td>
-						</tr>
-						<c:forEach var="osd" items="${osdetaillist}">
-							<tr>
-								<td>${osd.swname}</td>
-								<td>${osd.areaname }</td>
-								<td>${osd.officename }</td>
-								<td>${osd.departmentname }</td>
-								<td>${osd.employeename }</td>
-								<td>${osd.equipmenttype }</td>
-								<td>${osd.equipmentid}</td>
-							</tr>
-						</c:forEach>
-							<tr>
-							<td colspan=4>${detailpaginghtml }</td>
-							<td colspan=4 style="text-align:right">
-							${detailbeginrow }-${detailendrow} of ${detailtotalCount} items
-							</td>
-						</tr>
-					</c:if>
-					</table>
-					
-					
+				<div class="panel panel-body" id="departmentDiv">
+				
+				</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</div>
+				
+				
+				
+				
+				
+<script>
+function ftest(swname){
+	alert("json테스트 들어옴"+swname);
+	$.ajax({
+		url:"cswDetailJson.csw",
+		data:{swname:swname},
+		dataType :"json",
+		success:function(data){
+			var tablecode="";
+			tablecode+="<table class='table table-bordered'>";
+			
+			tablecode+="<tr>";
+			tablecode+="<td>기관명</td>";
+			tablecode+="<td>조직경로명</td>";
+			tablecode+="<td>사번</td>";
+			tablecode+="<td>사용자</td>";
+			tablecode+="<td>직위</td>";
+			tablecode+="<td>설치일자</td>";
+			tablecode+="<td>장비ID</td>";
+			tablecode+="<td>로컬IP</td>";
+			tablecode+="</tr>";
+			
+			var result=data.cswlist;
+			for(var i=0;i<result.length;i++){
+				tablecode+="<tr>";
+				tablecode+="<td>"+result[i].org+"</td>";
+				tablecode+="<td>"+result[i].areaname+"/"+result[i].officename+"/"+result[i].departmentname+"</td>";
+				tablecode+="<td>"+result[i].employeenumber+"</td>";
+				tablecode+="<td>"+result[i].employeename+"</td>";
+				tablecode+="<td>"+result[i].employeeposition+"</td>";
+				tablecode+="<td>"+result[i].created+"</td>";
+				tablecode+="<td>"+result[i].equipmentID+"</td>";
+				tablecode+="<td>"+result[i].equipmentIP+"</td>";
+
+				tablecode+="</tr>";
+			};
+			
+			var paging=data.paging;
+
+			tablecode+="<tr>";
+			tablecode+="<td colspan=6>"+paging.pagingHtml+"</td>";
+			tablecode+="<td>"+paging.beginRow+"-"+paging.endRow+" of "+paging.totalCount+" items</td>"
+			tablecode+="</tr>";
+	
+			tablecode+="</table>"
+			
+			$("#departmentDiv").html(tablecode);
+			alert("ajax끝");
+
+		}
+	});
+}
+
+
+
+function ftest2(swname,pageNumber){
+alert("igii");
+	$.ajax({
+		url:"csDetailJson.csw",
+		data:{swname:swname,pageNumber:pageNumber},
+		dataType :"json",
+		success:function(data){
+			var tablecode="";
+			tablecode+="<table class='table table-bordered'>";
+			
+			tablecode+="<tr>";
+			tablecode+="<td>기관명</td>";
+			tablecode+="<td>조직경로명</td>";
+			tablecode+="<td>사번</td>";
+			tablecode+="<td>사용자</td>";
+			tablecode+="<td>직위</td>";
+			tablecode+="<td>설치일자</td>";
+			tablecode+="<td>장비ID</td>";
+			tablecode+="<td>로컬IP</td>";
+			tablecode+="</tr>";
+			
+			var result=data.cswlist;
+			for(var i=0;i<result.length;i++){
+				tablecode+="<tr>";
+				tablecode+="<td>"+result[i].org+"</td>";
+				tablecode+="<td>"+result[i].areaname+"/"+result[i].officename+"/"+result[i].departmentname+"</td>";
+				tablecode+="<td>"+result[i].employeenumber+"</td>";
+				tablecode+="<td>"+result[i].employeename+"</td>";
+				tablecode+="<td>"+result[i].employeeposition+"</td>";
+				tablecode+="<td>"+result[i].created+"</td>";
+				tablecode+="<td>"+result[i].equipmentID+"</td>";
+				tablecode+="<td>"+result[i].equipmentIP+"</td>";
+
+				tablecode+="</tr>";
+			};
+			
+			var paging=data.paging;
+
+			tablecode+="<tr>";
+			tablecode+="<td colspan=6>"+paging.pagingHtml+"</td>";
+			tablecode+="<td>"+paging.beginRow+"-"+paging.endRow+" of "+paging.totalCount+" items</td>"
+			tablecode+="</tr>";
+			
+			
+			
+			tablecode+="</table>"
+			
+			$("#departmentDiv").html(tablecode);
+
+
+		}
+	});
+	
+}
+
+function getRecordByPageNumber(swname){
+	
+	
+	var pageNumber=$("input[name=pageNumber2]").val();
+	
+	alert(swname+"//"+pageNumber);
+	
+	$.ajax({
+		url:"csDetailJson.csw",
+		data:{swname:swname,pageNumber:pageNumber},
+		dataType :"json",
+		success:function(data){
+			var tablecode="";
+			tablecode+="<table class='table table-bordered'>";
+			
+			tablecode+="<tr>";
+			tablecode+="<td>기관명</td>";
+			tablecode+="<td>조직경로명</td>";
+			tablecode+="<td>사번</td>";
+			tablecode+="<td>사용자</td>";
+			tablecode+="<td>직위</td>";
+			tablecode+="<td>설치일자</td>";
+			tablecode+="<td>장비ID</td>";
+			tablecode+="<td>로컬IP</td>";
+			tablecode+="</tr>";
+			
+			var result=data.cswlist;
+			for(var i=0;i<result.length;i++){
+				tablecode+="<tr>";
+				tablecode+="<td>"+result[i].org+"</td>";
+				tablecode+="<td>"+result[i].areaname+"/"+result[i].officename+"/"+result[i].departmentname+"</td>";
+				tablecode+="<td>"+result[i].employeenumber+"</td>";
+				tablecode+="<td>"+result[i].employeename+"</td>";
+				tablecode+="<td>"+result[i].employeeposition+"</td>";
+				tablecode+="<td>"+result[i].created+"</td>";
+				tablecode+="<td>"+result[i].equipmentID+"</td>";
+				tablecode+="<td>"+result[i].equipmentIP+"</td>";
+
+				tablecode+="</tr>";
+			};
+			
+			var paging=data.paging;
+
+			tablecode+="<tr>";
+			tablecode+="<td colspan=6>"+paging.pagingHtml+"</td>";
+			tablecode+="<td>"+paging.beginRow+"-"+paging.endRow+" of "+paging.totalCount+" items</td>"
+			tablecode+="</tr>";
+			
+			
+			
+			tablecode+="</table>"
+			
+			$("#departmentDiv").html(tablecode);
+
+
+		}
+	});
+}
+
+function getRecordBySwDate(){
+	var fixedDate=$('input[name=fixedDate]').val();
+	$('#f').submit();
+}
+</script>
 
 <%@ include file="../TopBottom/Bottom.jsp"%>

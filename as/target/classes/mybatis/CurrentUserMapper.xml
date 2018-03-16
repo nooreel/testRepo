@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CurrentUserMapper">
+<select id="userList" resultType="CurrentUser.Model.CurrentUserBean">
+select  a.areaname, o.officename, d.departmentname,
+
+(select count(*) from tb_equipment e join tb_employee em on e.employeenumber=em.employeenumber
+where e.assetYN=0 and em.department_seq=d.department_seq) as 'assetdaesang',
+
+(select count(*) from tb_equipment e join tb_employee em on e.employeenumber=em.employeenumber
+where e.nclientsetup=0 and e.assetYN=0 and em.department_seq=d.department_seq) as 'assetreceive',
+
+(select count(*) from tb_equipment e join tb_employee em on e.employeenumber=em.employeenumber
+where e.assetYN=1 and em.department_seq=d.department_seq) as 'noassetdaesang',
+
+(select count(*) from tb_equipment e join tb_employee em on e.employeenumber=em.employeenumber
+where e.nclientsetup=0 and e.assetYN=1 and em.department_seq=d.department_seq) as 'noassetreceive'
+from tb_area a 
+left join tb_office o on o.area_seq=a.area_seq
+left join tb_department d on o.office_seq=d.office_seq 
+where a.active=0
+<if test="swDate!='null'">
+and date(a.created)>#{swDate}
+</if>
+<if test="areaname!=null">
+and a.areaname=#{areaname}
+</if>
+</select>
+
+
+<select id="getTotalCount" resultType="int">
+select count(*) from (
+select  a.areaname, o.officename, d.departmentname,
+
+(select count(*) from tb_equipment e join tb_employee em on e.employeenumber=em.employeenumber
+where e.assetYN=0 and em.department_seq=d.department_seq) as 'assetdaesang',
+
+(select count(*) from tb_equipment e join tb_employee em on e.employeenumber=em.employeenumber
+where e.nclientsetup=0 and e.assetYN=0 and em.department_seq=d.department_seq) as 'assetreceive',
+
+(select count(*) from tb_equipment e join tb_employee em on e.employeenumber=em.employeenumber
+where e.assetYN=1 and em.department_seq=d.department_seq) as 'noassetdaesang',
+
+(select count(*) from tb_equipment e join tb_employee em on e.employeenumber=em.employeenumber
+where e.nclientsetup=0 and e.assetYN=1 and em.department_seq=d.department_seq) as 'noassetreceive'
+from tb_area a 
+left join tb_office o on o.area_seq=a.area_seq
+left join tb_department d on o.office_seq=d.office_seq
+where a.active=0
+<if test="swDate!='null'">
+and date(a.created)>#{swDate}
+</if>
+<if test="areaname!=null">
+and a.areaname=#{areaname}
+</if>
+) ee
+</select>
+
+
+<select id="areaList" resultType="CurrentUser.Model.CurrentUserBean">
+select areaname from tb_area where active=0
+</select>
+</mapper>

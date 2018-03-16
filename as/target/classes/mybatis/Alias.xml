@@ -11,7 +11,11 @@ PUBLIC "-//mybatis.org//DTD config 3.0//EN"
 	<typeAlias alias="OfficeBean" type="User.Model.OfficeBean"></typeAlias>
 	<typeAlias alias="DepartmentBean" type="User.Model.DepartmentBean"></typeAlias>
 	<typeAlias alias="EmployeeBean" type="User.Model.EmployeeBean"></typeAlias>
+
 	
+	<typeAlias alias="CommercialSwBean" type="CommercialSw.Model.CommercialSwBean"></typeAlias>
+	<typeAlias alias="ExplorerBean" type="Explorer.Model.ExplorerBean"></typeAlias>
+
 </typeAliases>
 
 
@@ -34,6 +38,9 @@ PUBLIC "-//mybatis.org//DTD config 3.0//EN"
 <mapper resource="mybatis/WindowsMapper.xml"/>
 <mapper resource="mybatis/NClientInfoMapper.xml"/>
 <mapper resource="mybatis/CommercialSwMapper.xml"/>
+<mapper resource="mybatis/ExplorerMapper.xml"/>
+<mapper resource="mybatis/CurrentUserMapper.xml"/>
+<mapper resource="mybatis/MainPageMapper.xml"/>
 
 </mappers>
 

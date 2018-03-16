@@ -128,6 +128,20 @@
      <url-pattern>*.uf</url-pattern>
 </servlet-mapping>
 
+<servlet>
+     <servlet-name>ec</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/explorerchart-context.xml</param-value>
+     </init-param>
+</servlet>
+
+<servlet-mapping>
+     <servlet-name>ec</servlet-name>
+     <url-pattern>*.ec</url-pattern>
+</servlet-mapping>
+
 
 <servlet>
 
@@ -227,6 +241,34 @@
 <servlet-mapping>
      <servlet-name>wp</servlet-name>
      <url-pattern>*.wp</url-pattern>
+</servlet-mapping>
+
+<servlet>
+     <servlet-name>CurrentUser</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/currentUser-context.xml</param-value>
+     </init-param>
+</servlet>
+
+<servlet-mapping>
+     <servlet-name>CurrentUser</servlet-name>
+     <url-pattern>*.user</url-pattern>
+</servlet-mapping>
+
+<servlet>
+     <servlet-name>exp</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/exp-context.xml</param-value>
+     </init-param>
+</servlet>
+
+<servlet-mapping>
+     <servlet-name>exp</servlet-name>
+     <url-pattern>*.exp</url-pattern>
 </servlet-mapping>
 
 

@@ -86,8 +86,8 @@ public class CommercialSwPaging {
 			beforepage=this.getPageNumber()-1;
 		}
 		
-		if(this.getPageNumber()==this.getEndPage()) {
-			nextpage=this.getEndPage();
+		if(this.getPageNumber()==this.totalPage) {
+			nextpage=this.totalPage;
 		}else {
 			nextpage=this.getPageNumber()+1;
 		}

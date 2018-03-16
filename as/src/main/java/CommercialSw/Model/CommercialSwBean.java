@@ -7,8 +7,16 @@ public class CommercialSwBean {
 	private int quantity;
 	private int installquantity;
 	private int emptyquantity;
+	private int swnumber;
 	
 	
+	
+	public int getSwnumber() {
+		return swnumber;
+	}
+	public void setSwnumber(int swnumber) {
+		this.swnumber = swnumber;
+	}
 	public int getInstallquantity() {
 		return installquantity;
 	}
