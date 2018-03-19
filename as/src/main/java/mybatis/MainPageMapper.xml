@@ -31,15 +31,131 @@
 	</select>
 
 	<select id="swdistribute" resultType="osmainBean">
-		select s.swname as 'swname', (select count(*) from tb_equipment) as
+		select s.swname as
+		'swname', (select count(*) from tb_equipment) as
 		'daesangcount'
 		,count(s.swname ) as 'setupcount' from
 		(tb_sw s join tb_equipsw e
-		on e.swnumber=s.swnumber
+		on
+		e.swnumber=s.swnumber
 		) where s.swtype='표준sw' group by s.swname;
 
 
 	</select>
+
+	<select id="NclientSetupInfoByAsset" resultType="testt.Model.NclientAssetBean">
+		select
+		(select
+		count(*) from tb_equipment where assetyn=0) as 'countentire',
+		(select
+		count(*) from tb_equipment where assetyn=0 and nclientsetup=0) as
+		'coutnentiresetup',
+		(select count(*) from tb_equipment where assetyn=0
+		and equipmenttype='PC') as
+		'countpc',
+		(select count(*) from tb_equipment
+		where assetyn=0 and nclientsetup=0 and
+		equipmenttype='PC') as
+		'countpcsetup',
+		(select count(*) from tb_equipment where assetyn=0 and
+		equipmenttype='노트북')
+		as 'countnotebook',
+		(select count(*) from
+		tb_equipment where assetyn=0 and nclientsetup=0 and
+		equipmenttype='노트북' )as 'countnotebooksetup'
+	</select>
+
+	<select id="NclientSetupInfoByNotAsset" resultType="testt.Model.NclientAssetBean">
+		select
+		(select count(*) from tb_equipment where assetyn=1) as 'countentire',
+		(select count(*) from tb_equipment where assetyn=1 and nclientsetup=0)
+		as
+		'coutnentiresetup',
+		(select count(*) from tb_equipment where
+		assetyn=1 and equipmenttype='PC') as
+		'countpc',
+		(select count(*) from
+		tb_equipment where assetyn=1 and nclientsetup=0 and
+		equipmenttype='PC') as 'countpcsetup',
+		(select count(*) from
+		tb_equipment where assetyn=1 and equipmenttype='노트북')
+		as
+		'countnotebook',
+		(select count(*) from tb_equipment where assetyn=1 and
+		nclientsetup=0 and
+		equipmenttype='노트북' )as 'countnotebooksetup'
+	</select>
+
+	<select id="MakerSwList" resultType="testt.Model.MakerSwChartBean">
+		select maker,
+		(select
+		sum(quantity) from tb_sw where maker=s.maker) as 'quantity',
+		(select
+		count(*) from tb_sw sw join tb_equipsw es on sw.swnumber=es.swnumber
+		where sw.maker=s.maker) as 'setup'
+		from tb_sw s group by maker order by
+		2 desc limit 5
+	</select>
+	<select id="ExplorerChartTotal" resultType="testt.Model.ExplorerChartBean">
+
+		select floor(sw.swversion) as'floor',
+		sum((select count(*) from tb_equipsw
+		where swnumber=sw.swnumber)) as 'count'
+		from tb_sw sw where sw.swtype='Explorer' group by 1 order by
+		CAST(sw.swversion as double)
+
+	</select>
+
+	<select id="getStandardSwList" resultType="stswtb.Model.SwVersionManagementBean"
+		parameterType='Hashmap'>
+		select dae.swnumber,dae.swname,sum(dae.assetdaesang) as 'assetdaesang',
+		sum(dae.assetsetupcount) as 'assetsetupcount',sum(dae.notassetdaesang)
+		as 'notassetdaesang',
+		sum(dae.notassetsetupcount) as 'notassetsetupcount'
+		from
+		(select s.swnumber,s.swname,
+		(select count(*) from tb_equipment where assetYN=0) as 'assetdaesang',
+		(select count(*) from tb_equipsw es
+		join tb_equipment e
+		on e.equipmentid=es.equipmentid
+		where es.swnumber=s.swnumber and e.assetYN=0) as 'assetsetupcount',
+		(select count(*) from tb_equipment where assetYN=1) as 'notassetdaesang',
+		(select count(*) from tb_equipsw es
+		join tb_equipment e
+		on e.equipmentid=es.equipmentid
+		where es.swnumber=s.swnumber and e.assetYN=1) as 'notassetsetupcount'
+		from tb_sw s
+		where s.swtype='표준SW' and s.active=0
+		order by s.swnumber asc) dae join tb_sw s on dae.swnumber=s.swnumber group
+		by dae.swname order by dae.swnumber asc
+
+	</select>
+
+	<select id="getSwTotalCount" resultType="int" parameterType="Hashmap">
+		select count(*)
+		from
+		(select dae.swname,sum(dae.assetdaesang) as 'assetdaesang',
+		sum(dae.assetsetupcount) as 'assetsetupcount',sum(dae.notassetdaesang)
+		as 'notassetdaesang',
+		sum(dae.notassetsetupcount) as 'notassetsetupcount'
+		from
+		(select s.swnumber,s.swname,
+		(select count(*) from tb_equipment where assetYN=0) as 'assetdaesang',
+		(select count(*) from tb_equipsw es
+		join tb_equipment e
+		on e.equipmentid=es.equipmentid
+		where es.swnumber=s.swnumber and e.assetYN=0) as 'assetsetupcount',
+		(select count(*) from tb_equipment where assetYN=1) as 'notassetdaesang',
+		(select count(*) from tb_equipsw es
+		join tb_equipment e
+		on e.equipmentid=es.equipmentid
+		where es.swnumber=s.swnumber and e.assetYN=1) as 'notassetsetupcount'
+		from tb_sw s
+		where s.swtype='표준SW' and s.active=0
+		) dae
+		join tb_sw s on dae.swnumber=s.swnumber group by dae.swname) cnt;
+	</select>
+
 
 </mapper>
 	
