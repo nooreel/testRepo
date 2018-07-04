@@ -11,15 +11,9 @@
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
-	<bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<property name="messageConverters">
-		  <list>
-			<ref bean="jsonHttpMessageConverter"/>
-		  </list>
-		</property>
-	</bean>	
+
+
 	
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
